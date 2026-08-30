@@ -1,35 +1,93 @@
 <!doctype html>
+<!-- 
+  Este arquivo é o HTML do site. HTML é a "estrutura" da página:
+  ele define o que existe (títulos, textos, botões, imagens),
+  enquanto o CSS (style.css) define a aparência (cores, tamanhos, espaçamentos).
+-->
 <html lang="pt-BR">
+  <!-- lang="pt-BR" avisa o navegador (e o Google) que o site está em português do Brasil -->
+
   <head>
+    <!-- 
+      Tudo dentro de <head> não aparece na tela.
+      São "informações de configuração" da página (metadados).
+    -->
+
     <meta charset="UTF-8" />
+    <!-- Define a codificação de caracteres. Isso evita que acentos (ç, ã, é...) apareçam quebrados -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Essencial para celular: diz ao navegador para usar a largura real da tela do aparelho -->
+
+    <meta
+      name="description"
+      content="Odonto VITA é uma clínica odontológica em Teresina (Dirceu). Clínica geral, ortodontia, implantes, odontopediatria, clareamento e endodontia. Agende pelo WhatsApp."
+    />
+    <!-- 
+      MELHORIA: meta description.
+      Esse texto é o que aparece no resultado do Google embaixo do título do site.
+      Ajuda o cliente a ser encontrado (SEO) e não muda nada visualmente na página.
+    -->
+
     <title>Odonto VITA | Clínica Odontológica</title>
+    <!-- Título que aparece na aba do navegador e no resultado do Google -->
+
     <link rel="stylesheet" href="style.css" />
+    <!-- Aqui conectamos o arquivo de estilo (CSS). Sem essa linha, o site fica "sem roupa", só texto puro -->
+
     <!-- Importando a fonte 'Inter', que é a mesma utilizada pelo Tailwind/IA para dar um tom moderno -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Isso baixa a fonte "Inter" do Google Fonts, em 4 pesos (400=normal, 600, 700, 800=bem grosso) -->
   </head>
+
   <body>
-    <!-- CABEÇALHO -->
+    <!-- Tudo dentro de <body> é o que realmente aparece na tela para o visitante -->
+
+    <!-- ==================== CABEÇALHO (MENU FIXO NO TOPO) ==================== -->
     <header class="cabecalho">
+      <!-- 
+        A classe "cabecalho" é o "gancho" que o CSS usa para estilizar esse bloco.
+        No style.css, procure por ".cabecalho" para ver as regras aplicadas aqui.
+      -->
+
       <div class="logo">
         <h2>ODONTO<span>VITA</span></h2>
+        <!-- 
+          O <span> separa a palavra "VITA" para poder pintar ela de outra cor no CSS
+          (veja ".logo span" no style.css)
+        -->
       </div>
+
       <nav class="menu">
+        <!-- <nav> é a tag correta para "menu de navegação", ajuda acessibilidade e Google -->
         <a href="#inicio">Início</a>
         <a href="#especialidades">Especialidades</a>
         <a href="#sobre">Sobre Nós</a>
         <a href="#localizacao">Localização</a>
+        <!-- 
+          Cada href="#algumaCoisa" aponta para um id="algumaCoisa" que existe mais abaixo na página.
+          Isso faz o clique "rolar" a tela até aquela seção (rolagem suave configurada no CSS: scroll-behavior)
+        -->
       </nav>
     </header>
 
-    <!-- BANNER PRINCIPAL (HERO) -->
+    <!-- ==================== BANNER PRINCIPAL (HERO) ==================== -->
     <section id="inicio" class="hero">
+      <!-- id="inicio" é o alvo do link "Início" do menu -->
+
       <div class="hero-conteudo">
         <span class="badge">Clínica Odontológica</span>
+        <!-- "badge" é aquela etiqueta pequena e colorida acima do título -->
+
         <h1>Seu sorriso merece <br />o melhor <span>cuidado</span></h1>
+        <!-- 
+          <br /> força uma quebra de linha manual.
+          O <span> em volta de "cuidado" deixa só essa palavra vermelha (ver CSS ".hero-conteudo h1 span")
+        -->
+
         <p>
           Na Odonto VITA, unimos tecnologia de ponta e profissionais
           qualificados para transformar sorrisos com excelência e carinho.
@@ -41,37 +99,64 @@
             href="https://api.whatsapp.com/send/?phone=5586981492207&text=Ol%C3%A1+%2C+gostaria+de+marcar+uma+avalia%C3%A7%C3%A3o"
             class="btn btn-verde"
             target="_blank"
+            rel="noopener"
             >Agendar pelo WhatsApp</a
           >
+          <!-- 
+            Esse link abre o WhatsApp já com uma mensagem pronta digitada (o texto depois de "text=").
+            target="_blank" abre em nova aba.
+            MELHORIA: adicionei rel="noopener" — é uma boa prática de segurança sempre que
+            se usa target="_blank", evita que a nova aba tenha acesso à página original.
+          -->
+
           <a href="#especialidades" class="btn btn-contorno"
             >Conheça os Tratamentos</a
           >
+          <!-- Botão "vazado" (contorno) que rola até a seção de especialidades -->
         </div>
       </div>
+
       <!-- Espaço para a imagem/logo grande do lado direito (como no vídeo) -->
       <div class="hero-imagem">
-        <img src="logo.jpg" alt="Imagem Odonto Vita" />
+        <img src="logo.jpg" alt="Fachada e identidade visual da clínica Odonto VITA" />
+        <!-- 
+          MELHORIA: o texto do "alt" foi deixado mais descritivo.
+          O "alt" é lido por leitores de tela (acessibilidade) e aparece se a imagem não carregar.
+          Quanto mais descritivo, melhor para pessoas com deficiência visual e para o Google.
+        -->
       </div>
     </section>
 
-    <!-- BARRA VERMELHA DE INFORMAÇÕES (ABAIXO DO BANNER) -->
+    <!-- ==================== BARRA VERMELHA DE INFORMAÇÕES ==================== -->
     <div class="barra-infos">
       <div class="info-item">
-        <span class="info-icone">🕒</span>
+        <span class="info-icone" aria-hidden="true">🕒</span>
+        <!-- 
+          MELHORIA: aria-hidden="true" nos emojis decorativos.
+          Isso diz para leitores de tela "ignore este emoji, ele é só decoração",
+          porque o texto ao lado já explica a mesma informação.
+        -->
         <div>
           <strong>Horário de Atendimento</strong>
           <p>Seg a Sex: 08h - 18h | Sáb: 08h - 12h</p>
         </div>
       </div>
+
       <div class="info-item">
-        <span class="info-icone">📞</span>
+        <span class="info-icone" aria-hidden="true">📞</span>
         <div>
           <strong>Ligue para nós</strong>
-          <p>(86) 98149-2207</p>
+          <p><a href="tel:+5586981492207" style="color: inherit; text-decoration: none;">(86) 98149-2207</a></p>
+          <!-- 
+            MELHORIA: transformei o número em link "tel:".
+            Em celulares, isso faz o número virar clicável e já abrir o discador de chamadas.
+            O style="color: inherit..." é só para o link não ficar azul/roxo, mantendo a cor original do texto.
+          -->
         </div>
       </div>
+
       <div class="info-item">
-        <span class="info-icone">📍</span>
+        <span class="info-icone" aria-hidden="true">📍</span>
         <div>
           <strong>Nossa Localização</strong>
           <p>Av. Joaquim Nelson, Qd. 72, N° 14 - Dirceu</p>
@@ -79,9 +164,10 @@
       </div>
     </div>
 
-    <!-- SEÇÃO DE ESPECIALIDADES (Resumida para as 6 principais do vídeo) -->
+    <!-- ==================== SEÇÃO DE ESPECIALIDADES ==================== -->
     <section id="especialidades" class="secao-especialidades">
       <div class="cabecalho-secao">
+        <!-- Esse bloco "cabecalho-secao" é reutilizado em várias seções: badge + título + parágrafo, centralizados -->
         <span class="badge">O que oferecemos</span>
         <h2>Nossas Especialidades</h2>
         <p>
@@ -91,53 +177,64 @@
       </div>
 
       <div class="grid-especialidades">
+        <!-- 
+          "grid-especialidades" organiza os cards abaixo em colunas automáticas
+          (o CSS usa "grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))",
+          ou seja: cria quantas colunas de 320px couberem, e distribui o espaço sobrando)
+        -->
+
         <!-- Card 1 -->
         <div class="card-especialidade">
-          <div class="icone-check">✔️</div>
+          <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Clínica Geral</h3>
           <p>
             Prevenção, limpezas, restaurações e cuidados básicos para manter a
             saúde bucal em dia.
           </p>
         </div>
+
         <!-- Card 2 -->
         <div class="card-especialidade">
-          <div class="icone-check">✔️</div>
+          <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Ortodontia</h3>
           <p>
             Aparelhos estéticos e alinhadores invisíveis para o alinhamento
             perfeito dos seus dentes.
           </p>
         </div>
+
         <!-- Card 3 -->
         <div class="card-especialidade">
-          <div class="icone-check">✔️</div>
+          <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Implantodontia</h3>
           <p>
             Recupere a função e a estética do seu sorriso com implantes
             dentários modernos e seguros.
           </p>
         </div>
+
         <!-- Card 4 -->
         <div class="card-especialidade">
-          <div class="icone-check">✔️</div>
+          <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Odontopediatria</h3>
           <p>
             Cuidado especializado, lúdico e carinhoso para a saúde bucal das
             crianças.
           </p>
         </div>
+
         <!-- Card 5 -->
         <div class="card-especialidade">
-          <div class="icone-check">✔️</div>
+          <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Clareamento Dental</h3>
           <p>
             Técnicas modernas e seguras para um sorriso mais branco e iluminado.
           </p>
         </div>
+
         <!-- Card 6 -->
         <div class="card-especialidade">
-          <div class="icone-check">✔️</div>
+          <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Endodontia</h3>
           <p>
             Tratamento de canal rápido, indolor e com equipamentos de alta
@@ -147,7 +244,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO SOBRE NÓS E ESTATÍSTICAS -->
+    <!-- ==================== SEÇÃO SOBRE NÓS E ESTATÍSTICAS ==================== -->
     <section id="sobre" class="secao-sobre">
       <div class="cabecalho-secao">
         <span class="badge">Quem somos</span>
@@ -162,6 +259,7 @@
       </div>
 
       <div class="estatisticas">
+        <!-- Os três números grandes (700+, 6+, 100%) -->
         <div class="dado">
           <h2>700+</h2>
           <p>Pacientes atendidos</p>
@@ -177,7 +275,8 @@
       </div>
     </section>
 
-    <!-- FAIXA VERMELHA DE CHAMADA PARA AÇÃO (CTA) -->
+    <!-- ==================== FAIXA VERMELHA DE CHAMADA (CTA) ==================== -->
+    <!-- "CTA" = Call To Action = "Chamada para Ação", o botão que convence o visitante a agir -->
     <section class="faixa-cta">
       <h2>Pronto para transformar seu sorriso?</h2>
       <p>
@@ -188,20 +287,23 @@
         href="https://api.whatsapp.com/send/?phone=5586981492207"
         class="btn btn-verde-escuro"
         target="_blank"
+        rel="noopener"
         >Agendar pelo WhatsApp</a
       >
     </section>
 
-    <!-- RODAPÉ FINAL E MAPA -->
+    <!-- ==================== RODAPÉ FINAL E MAPA ==================== -->
     <footer id="localizacao" class="rodape">
       <div class="rodape-container">
+        <!-- Divide o rodapé em duas colunas: infos de contato (esquerda) + mapa (direita) -->
+
         <div class="rodape-infos">
           <span class="badge">Onde estamos</span>
           <h2>Localização e Contato</h2>
 
           <div class="lista-contato">
             <div class="item-contato">
-              <span class="icone-contato">📍</span>
+              <span class="icone-contato" aria-hidden="true">📍</span>
               <div>
                 <strong>Endereço</strong>
                 <p>
@@ -210,15 +312,17 @@
                 </p>
               </div>
             </div>
+
             <div class="item-contato">
-              <span class="icone-contato">📞</span>
+              <span class="icone-contato" aria-hidden="true">📞</span>
               <div>
                 <strong>Telefone / WhatsApp</strong>
                 <p>(86) 98149-2207</p>
               </div>
             </div>
+
             <div class="item-contato">
-              <span class="icone-contato">🕒</span>
+              <span class="icone-contato" aria-hidden="true">🕒</span>
               <div>
                 <strong>Horário de Funcionamento</strong>
                 <p>Segunda a Sexta: 08h às 18h<br />Sábado: 08h às 12h</p>
@@ -229,6 +333,7 @@
 
         <div class="rodape-mapa">
           <iframe
+            title="Mapa com a localização da Odonto VITA"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3974.0158670655314!2d-42.75555112501812!3d-5.101134494875818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x78e311232e90983%3A0x9fc75c97c40294a8!2sOdonto%20VITA!5e0!3m2!1spt-BR!2sbr!4v1788128909679!5m2!1spt-BR!2sbr"
             width="100%"
             height="100%"
@@ -236,6 +341,13 @@
             allowfullscreen=""
             loading="lazy"
           ></iframe>
+          <!-- 
+            MELHORIA: adicionei title="..." no iframe.
+            Todo <iframe> deveria ter um "title" explicando o que ele mostra — isso é
+            exigido pelas regras de acessibilidade (leitores de tela avisam o usuário do que se trata).
+            loading="lazy" já estava certo: só carrega o mapa quando o usuário rola até perto dele,
+            deixando o site mais rápido.
+          -->
         </div>
       </div>
 
