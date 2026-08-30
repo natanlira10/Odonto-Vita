@@ -174,33 +174,57 @@ body {
    BARRA VERMELHA DE INFORMAÇÕES
    ================================================== */
 .barra-infos {
-  background-color: var(--vermelho-principal);
+  /* 
+    MELHORIA: em vez de um vermelho chapado (background-color sólido), usamos um
+    "gradiente" (linear-gradient) indo de um vermelho um pouco mais claro para um
+    mais escuro, na diagonal (135deg). Isso dá profundidade e deixa o vermelho
+    menos "forçado"/plano visualmente, sem mudar a cor da marca.
+  */
+  background: linear-gradient(135deg, #e13a3a 0%, #b91c1c 100%);
   color: var(--branco);
   display: flex;
   justify-content: space-evenly; /* distribui os 3 blocos (horário, telefone, endereço) com espaços iguais entre eles */
-  padding: 30px 5%;
+  padding: 36px 5%;
   flex-wrap: wrap; /* Permite quebrar linha no celular, em vez de espremer tudo numa linha só */
 }
 
 .info-item {
   display: flex;
   align-items: center;
+  justify-content: center; /* MELHORIA: centraliza o conjunto ícone+texto dentro do espaço dele — sem isso, ele "gruda" à esquerda quando a barra vira coluna no celular */
   gap: 15px; /* Espaço entre o ícone (emoji) e o texto */
   margin: 10px 0;
 }
 
 .info-icone {
-  font-size: 24px; /* Tamanho do emoji/ícone */
+  /* 
+    MELHORIA: o emoji sozinho, "solto" no fundo vermelho, ficava com aparência
+    crua/plana. Agora ele fica dentro de um círculo com fundo bem sutil
+    (branco bem transparente), como um "selo" — dá mais acabamento visual.
+  */
+  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0; /* impede o círculo de "espremer" quando o texto ao lado é grande */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.16);
+  border-radius: 50%; /* 50% = círculo perfeito */
 }
 
 .info-item strong {
   font-size: 16px;
   display: block; /* faz o <strong> ocupar a própria linha, empurrando o parágrafo abaixo dele */
   margin-bottom: 4px;
+  letter-spacing: 0.2px; /* pequeno espaçamento entre letras, deixa o texto em negrito mais "arejado" e fácil de ler */
 }
 .info-item p {
   font-size: 14px;
-  color: #fca5a5; /* Um rosa bem claro para dar contraste com o fundo vermelho escuro */
+  color: #ffe1e1; /* MELHORIA: rosa bem mais claro (quase branco) para ficar mais legível que o tom anterior, que tinha menos contraste com o fundo vermelho */
+}
+.info-item > div {
+  text-align: left; /* MELHORIA: garante que o título/texto de cada item fique alinhado à esquerda entre si, mesmo com o bloco todo centralizado */
 }
 
 /* ==================================================
@@ -512,5 +536,33 @@ body {
     align-items: center;
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* 
+  NOVO: regras só para telas bem estreitas (celulares).
+  992px ainda é largura de tablet; um iPhone, por exemplo, tem por volta de 390px.
+  Por isso usamos uma segunda media query, mais restrita, só para ajustar o cabeçalho.
+*/
+@media (max-width: 640px) {
+  .cabecalho {
+    flex-direction: column; /* empilha logo em cima e menu embaixo, em vez de tentar caber os dois lado a lado */
+    gap: 14px;
+    padding: 16px 5%;
+  }
+
+  .menu {
+    display: flex;
+    flex-wrap: wrap; /* permite os links quebrarem linha quando não cabem todos */
+    justify-content: center; /* centraliza os links tanto na linha toda quanto quando quebram em duas linhas */
+    gap: 10px 20px; /* espaço entre linhas (10px) e entre links na mesma linha (20px) — troca o antigo "margin-left" fixo, que deixava a quebra torta */
+  }
+
+  .menu a {
+    margin-left: 0; /* remove a margem individual antiga; agora o espaçamento vem do "gap" acima, que fica igual dos dois lados */
+  }
+
+  .rodape-redes {
+    justify-content: center; /* centraliza os ícones de Instagram/Facebook no celular, já que o bloco de rodapé também fica centralizado */
   }
 }
