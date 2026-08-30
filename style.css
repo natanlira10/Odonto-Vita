@@ -1,0 +1,441 @@
+/* ==================================================
+   VARIÁVEIS DE CORES E CONFIGURAÇÕES GERAIS
+================================================== */
+:root {
+  --vermelho-principal: #dc2626; /* Vermelho escuro forte */
+  --vermelho-fundo: #fef2f2; /* Rosa/Vermelho bem clarinho do fundo */
+  --verde-whatsapp: #22c55e; /* Verde claro do botão */
+  --verde-whatsapp-hover: #16a34a; /* Verde mais escuro para quando passar o mouse */
+  --texto-escuro: #1f2937; /* Cinza quase preto para textos (mais elegante que o preto puro) */
+  --texto-claro: #6b7280; /* Cinza médio para subtítulos e descrições */
+  --branco: #ffffff;
+}
+
+/* Reset básico para limpar configurações automáticas do navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif; /* Fonte moderna e limpa */
+}
+
+html {
+  scroll-behavior: smooth; /* Rolagem suave ao clicar no menu */
+}
+
+body {
+  background-color: var(--branco);
+  color: var(--texto-escuro);
+}
+
+/* ==================================================
+   CABEÇALHO E MENU (Navbar)
+================================================== */
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%; /* 5% de margem nas laterais mantém o site respirando */
+  background-color: var(--branco);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Sombra bem leve e elegante */
+  position: sticky; /* Fixa no topo */
+  top: 0;
+  z-index: 1000; /* Garante que fique por cima de tudo */
+}
+
+.logo h2 {
+  color: var(--vermelho-principal);
+  font-weight: 800;
+  font-size: 24px;
+}
+.logo span {
+  color: var(--texto-escuro); /* O texto 'VITA' fica escuro */
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--texto-escuro);
+  font-weight: 600;
+  margin-left: 30px;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+.menu a:hover {
+  color: var(--vermelho-principal);
+}
+
+/* ==================================================
+   PADRÕES DE BOTÕES E BADGES (Etiquetas)
+================================================== */
+.badge {
+  color: var(--vermelho-principal);
+  background-color: #fee2e2;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-verde {
+  background-color: var(--verde-whatsapp);
+  color: var(--branco);
+  box-shadow: 0 4px 6px rgba(34, 197, 94, 0.3);
+}
+.btn-verde:hover {
+  background-color: var(--verde-whatsapp-hover);
+  transform: translateY(-2px); /* Efeito sutil de levantar ao passar o mouse */
+}
+
+.btn-contorno {
+  background-color: transparent;
+  color: var(--vermelho-principal);
+  border: 2px solid var(--vermelho-principal);
+}
+.btn-contorno:hover {
+  background-color: var(--vermelho-principal);
+  color: var(--branco);
+}
+
+/* ==================================================
+   BANNER PRINCIPAL (HERO)
+================================================== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 5%;
+  background-color: var(--vermelho-fundo);
+  min-height: 80vh; /* Ocupa boa parte da tela */
+}
+
+.hero-conteudo {
+  max-width: 50%; /* Ocupa metade da tela */
+}
+
+.hero-conteudo h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: var(--texto-escuro);
+}
+.hero-conteudo h1 span {
+  color: var(--vermelho-principal);
+}
+
+.hero-conteudo p {
+  font-size: 1.125rem;
+  color: var(--texto-claro);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 90%;
+}
+
+.hero-botoes {
+  display: flex;
+  gap: 15px; /* Espaço entre os dois botões */
+}
+
+.hero-imagem {
+  width: 45%;
+}
+.hero-imagem img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* ==================================================
+   BARRA VERMELHA DE INFORMAÇÕES
+================================================== */
+.barra-infos {
+  background-color: var(--vermelho-principal);
+  color: var(--branco);
+  display: flex;
+  justify-content: space-evenly;
+  padding: 30px 5%;
+  flex-wrap: wrap; /* Permite quebrar linha no celular */
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaço entre o ícone e o texto */
+  margin: 10px 0;
+}
+
+.info-icone {
+  font-size: 24px; /* Tamanho do emoji/ícone */
+}
+
+.info-item strong {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 4px;
+}
+.info-item p {
+  font-size: 14px;
+  color: #fca5a5; /* Um rosa bem claro para dar contraste */
+}
+
+/* ==================================================
+   TÍTULOS DE SEÇÕES (Padrão para centralizar títulos)
+================================================== */
+.cabecalho-secao {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px auto; /* Centraliza a própria div e dá margem inferior */
+}
+.cabecalho-secao h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+.cabecalho-secao p {
+  color: var(--texto-claro);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ==================================================
+   ESPECIALIDADES (Com Grid moderno e Cards limpos)
+================================================== */
+.secao-especialidades {
+  padding: 100px 5%;
+  background-color: var(--branco);
+}
+
+.grid-especialidades {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(320px, 1fr)
+  ); /* Cria colunas que se ajustam sozinhas */
+  gap: 30px; /* Distância exata entre os cards */
+}
+
+.card-especialidade {
+  background-color: #f9fafb; /* Cinza super claro, quase branco */
+  padding: 40px 30px;
+  border-radius: 16px;
+  border: 1px solid #f3f4f6; /* Borda bem sutil */
+  transition: all 0.3s ease;
+}
+
+.card-especialidade:hover {
+  background-color: var(--branco);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); /* Sombra elegante ao passar o mouse */
+  border-color: #fee2e2; /* Borda fica rosada */
+}
+
+.icone-check {
+  width: 48px;
+  height: 48px;
+  background-color: var(--vermelho-fundo);
+  color: var(--vermelho-principal);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.card-especialidade h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.card-especialidade p {
+  color: var(--texto-claro);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* ==================================================
+   SOBRE NÓS E ESTATÍSTICAS
+================================================== */
+.secao-sobre {
+  padding: 100px 5%;
+  background-color: var(--vermelho-fundo);
+}
+
+.estatisticas {
+  display: flex;
+  justify-content: center;
+  gap: 80px; /* Grande espaço entre os números */
+  margin-top: 50px;
+  text-align: center;
+}
+
+.dado h2 {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--vermelho-principal);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.dado p {
+  font-weight: 600;
+  color: var(--texto-escuro);
+  font-size: 1.1rem;
+}
+
+/* ==================================================
+   FAIXA DE CHAMADA (CTA)
+================================================== */
+.faixa-cta {
+  background-color: var(--vermelho-principal);
+  padding: 80px 5%;
+  text-align: center;
+  color: var(--branco);
+}
+
+.faixa-cta h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.faixa-cta p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #fca5a5;
+}
+
+.btn-verde-escuro {
+  background-color: var(--verde-whatsapp);
+  color: var(--branco);
+  padding: 16px 32px;
+  font-size: 1.1rem;
+}
+.btn-verde-escuro:hover {
+  background-color: #15803d; /* Um verde um pouco mais forte para contrastar com o vermelho */
+}
+
+/* ==================================================
+   RODAPÉ E LOCALIZAÇÃO
+================================================== */
+.rodape {
+  background-color: #f9fafb;
+  padding: 80px 5% 20px 5%;
+}
+
+.rodape-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+.rodape-infos {
+  flex: 1; /* Ocupa o espaço disponível do lado esquerdo */
+}
+
+.rodape-infos h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.lista-contato {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Espaço entre endereço, telefone e horário */
+}
+
+.item-contato {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.icone-contato {
+  font-size: 24px;
+}
+
+.item-contato strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+.item-contato p {
+  color: var(--texto-claro);
+  line-height: 1.6;
+}
+
+.rodape-mapa {
+  flex: 1; /* Ocupa o espaço disponível do lado direito */
+}
+
+.rodape-direitos {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid #e5e7eb; /* Linha fininha cinza separando */
+  color: var(--texto-claro);
+  font-size: 0.9rem;
+}
+
+/* ==================================================
+   RESPONSIVIDADE (Para Celulares e Tablets)
+================================================== */
+@media (max-width: 992px) {
+  .hero,
+  .rodape-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-conteudo,
+  .hero-imagem,
+  .rodape-infos,
+  .rodape-mapa {
+    max-width: 100%;
+  }
+
+  .hero-conteudo {
+    margin-bottom: 50px;
+  }
+
+  .hero-botoes {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .hero-conteudo h1 {
+    font-size: 2.5rem;
+  }
+
+  .estatisticas {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .barra-infos {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .item-contato {
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+}
