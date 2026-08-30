@@ -393,6 +393,68 @@ body {
   flex: 1; /* Ocupa o espaço disponível do lado direito, igual ao .rodape-infos */
 }
 
+/* ==================================================
+   NOVO: REDES SOCIAIS NO RODAPÉ
+   ================================================== */
+.rodape-redes {
+  display: flex;
+  gap: 20px; /* espaço entre o link do Instagram e o do Facebook */
+  margin-top: 30px; /* espaço entre a lista de contato (endereço/telefone/horário) e as redes sociais */
+}
+
+.rede-social {
+  display: inline-flex; /* permite alinhar o ícone e o texto lado a lado, centralizados */
+  align-items: center;
+  gap: 8px; /* espaço entre o ícone (svg) e o texto ao lado */
+  color: var(--texto-escuro);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease; /* muda de cor suavemente ao passar o mouse */
+}
+.rede-social:hover {
+  color: var(--vermelho-principal); /* fica vermelho ao passar o mouse, igual ao resto do site */
+}
+.rede-social svg {
+  flex-shrink: 0; /* impede que o ícone "encolha" se o texto ao lado for grande */
+}
+
+/* ==================================================
+   NOVO: BOTÃO FLUTUANTE DE WHATSAPP
+   ==================================================
+   "position: fixed" gruda o elemento na tela (não na página), então ele
+   fica sempre visível no mesmo lugar, mesmo quando o usuário rola para baixo.
+*/
+.whatsapp-flutuante {
+  position: fixed; /* fica "grudado" na janela do navegador, não na página */
+  bottom: 24px; /* distância da borda de baixo da tela */
+  right: 24px; /* distância da borda direita da tela */
+  width: 60px;
+  height: 60px;
+  background-color: var(--verde-whatsapp);
+  border-radius: 50%; /* 50% transforma o quadrado em um círculo perfeito */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centraliza o ícone dentro do círculo */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25); /* sombra para o botão "flutuar" visualmente sobre o conteúdo */
+  z-index: 2000; /* número alto garante que fique por cima de TODO o resto do site, inclusive do cabeçalho fixo */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.whatsapp-flutuante:hover {
+  transform: scale(1.08); /* aumenta levemente o botão ao passar o mouse, dando feedback visual */
+  background-color: var(--verde-whatsapp-hover);
+}
+
+/* Em telas pequenas, deixamos o botão um pouco menor e mais próximo da borda */
+@media (max-width: 992px) {
+  .whatsapp-flutuante {
+    width: 52px;
+    height: 52px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
 .rodape-direitos {
   text-align: center;
   padding-top: 30px;
