@@ -1,70 +1,196 @@
 <!doctype html>
-<!-- 
-  Este arquivo é o HTML do site: a ESTRUTURA da página (o que existe: títulos,
-  textos, botões, imagens). O CSS (style.css) define a APARÊNCIA (cores, fontes,
-  espaçamentos). Comentários como este explicam cada parte para você estudar.
+<!--
+  ═══════════════════════════════════════════════════════════════════════
+  AULA: Bem-vindo(a)! Este é o arquivo HTML — o "esqueleto" da página.
+  ═══════════════════════════════════════════════════════════════════════
+  Pense em construir uma casa: o HTML é a fundação e as paredes (o que
+  existe: onde fica a porta, a janela, o quarto). O CSS (o outro arquivo,
+  style.css) é a decoração: a cor da parede, o tipo de piso, as cortinas.
+  Sem CSS, esta página apareceria só com texto preto, sem nenhum estilo.
+
+  <!doctype html> na linha de cima não é uma "tag" comum — é um AVISO para
+  o navegador logo na primeira linha do arquivo, dizendo "isto aqui é um
+  documento HTML moderno (HTML5)". Todo arquivo .html deve começar assim.
 -->
 <html lang="pt-BR">
+  <!--
+    A tag <html> é a "caixa mãe": TUDO que existe na página fica dentro
+    dela. O atributo lang="pt-BR" avisa o navegador (e o Google) que o
+    conteúdo está em português do Brasil — isso ajuda em duas coisas:
+    1) leitores de tela escolhem a pronúncia certa;
+    2) o Google entende melhor o idioma do site para buscas.
+  -->
+
   <head>
+    <!--
+      A tag <head> guarda informações que o VISITANTE NÃO VÊ na tela.
+      São "bastidores": configurações, título da aba, e conexões com
+      arquivos externos (como o CSS e as fontes).
+    -->
+
     <meta charset="UTF-8" />
+    <!--
+      Isso diz ao navegador qual "alfabeto de caracteres" usar para ler o
+      arquivo. UTF-8 é o padrão universal e entende acentos (ç, ã, é...).
+      Sem essa linha, palavras acentuadas podem aparecer como símbolos
+      estranhos tipo "Ã§".
+    -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Essa linha é ESSENCIAL para o site funcionar bem no celular.
+      "width=device-width" diz: "use a largura real da tela do aparelho"
+      (em vez de simular uma tela de computador e depois encolher tudo).
+      "initial-scale=1.0" diz: "comece sem zoom nenhum, tamanho normal".
+    -->
 
     <meta
       name="description"
       content="Odonto VITA é uma clínica odontológica em Teresina (Dirceu). Clínica geral, ortodontia, implantes, odontopediatria, clareamento e endodontia. Agende pelo WhatsApp."
     />
+    <!--
+      Essa é a "meta description". Repare: ela NÃO aparece na tela do site.
+      Ela aparece no resultado de busca do Google, embaixo do título azul,
+      como um resuminho. Escrever ela com cuidado ajuda o site a ser
+      encontrado por mais gente (isso se chama "SEO").
+    -->
 
     <title>Odonto VITA | Clínica Odontológica</title>
+    <!--
+      O <title> é o texto que aparece na ABA do navegador, e também é o
+      título clicável que aparece no Google. Cada página do site deveria
+      ter um título único e descritivo.
+    -->
 
     <link rel="stylesheet" href="style.css" />
+    <!--
+      Aqui é onde "conectamos" o arquivo de estilos (style.css) a esta
+      página. rel="stylesheet" diz "isso é uma folha de estilos".
+      href="style.css" é o caminho do arquivo — como os dois arquivos
+      estão na mesma pasta, basta escrever o nome dele.
+      SEM ESSA LINHA, o site ficaria "pelado": sem cor, sem fonte
+      bonita, sem layout — só texto corrido de cima a baixo.
+    -->
 
-    <!-- 
-      NOVO: trocamos a fonte única "Inter" por uma DUPLA de fontes, que é uma
-      técnica clássica de design: uma serifada (com "pezinhos") para os títulos
-      grandes, transmitindo cuidado/elegância, e uma sem-serifa limpa para o
-      resto do texto, garantindo leitura fácil. "Fraunces" = títulos.
-      "Work Sans" = texto normal, menus e botões.
+    <!--
+      As próximas 3 linhas trazem fontes (tipos de letra) do Google Fonts,
+      um serviço gratuito do Google. Usamos DUAS fontes diferentes de
+      propósito — é uma técnica clássica de design:
+        • "Fraunces" → uma fonte SERIFADA (tem "pezinhos" nas letras),
+          usada só nos títulos grandes, para dar um ar elegante e cuidadoso.
+        • "Work Sans" → uma fonte SEM SERIFA (letras "limpas"), usada no
+          texto corrido, no menu e nos botões, porque é mais fácil de ler
+          em tamanhos pequenos.
     -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- "preconnect" avisa o navegador: "você vai precisar baixar algo
+         deste site daqui a pouco, já pode ir abrindo a conexão" — deixa
+         o carregamento da fonte um pouquinho mais rápido. -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Mesma ideia, mas para o servidor que guarda o ARQUIVO da fonte
+         em si (gstatic é diferente de googleapis). -->
     <link
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,560;9..144,650&family=Work+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Esse link é o que de fato BAIXA o CSS das fontes. Repare que o
+         endereço pede pesos específicos (450, 560, 650...) — "peso" é o
+         quão fino ou grosso o traço da letra é. Pedimos só os pesos que
+         realmente usamos, para o site carregar mais rápido. -->
   </head>
 
   <body>
-    <!-- ==================== CABEÇALHO ==================== -->
+    <!--
+      Tudo dentro de <body> é o que o visitante REALMENTE VÊ na tela.
+      Vamos construir a página de cima para baixo: cabeçalho, banner
+      principal, cartão de informações, especialidades, sobre nós,
+      chamada para ação, e por fim o rodapé.
+    -->
+
+    <!-- ==================== 1. CABEÇALHO (topo fixo) ==================== -->
     <header class="cabecalho">
+      <!--
+        <header> é a tag "certa" para representar o cabeçalho de uma
+        página (existem tags com significado, tipo <header>, <nav>,
+        <footer> — isso se chama HTML SEMÂNTICO, e ajuda o Google e
+        leitores de tela a entenderem a estrutura da página, não só a
+        aparência dela).
+        class="cabecalho" é o "gancho" que o CSS usa para estilizar este
+        bloco — procure por ".cabecalho" no arquivo style.css para ver
+        as regras aplicadas aqui (cor de fundo, se fica fixo no topo, etc).
+      -->
+
       <div class="logo">
+        <!-- <div> é uma "caixa" genérica, sem significado especial —
+             serve só para agrupar coisas e poder estilizar o grupo. -->
         <h2>ODONTO<span>VITA</span></h2>
+        <!--
+          Aqui usamos um título <h2> como logotipo em texto.
+          Repare que colocamos "VITA" dentro de um <span> — isso serve
+          para poder pintar SÓ essa palavra de vermelho no CSS
+          (veja a regra ".logo span" no style.css), enquanto "ODONTO"
+          continua com a cor padrão.
+        -->
       </div>
+
       <nav class="menu">
+        <!--
+          <nav> é a tag semântica para "bloco de navegação" (o menu).
+          Dentro dela, cada <a> é um link.
+        -->
         <a href="#inicio">Início</a>
         <a href="#especialidades">Especialidades</a>
         <a href="#sobre">Sobre Nós</a>
         <a href="#localizacao">Localização</a>
+        <!--
+          Repare no padrão href="#alguma-coisa". O "#" não leva a outra
+          página — ele diz ao navegador "role a tela até o elemento que
+          tem id="alguma-coisa" nesta MESMA página". Por exemplo, o link
+          "Início" aponta para id="inicio", que está lá embaixo, na tag
+          <section id="inicio">. É assim que o menu "pula" para cada
+          parte do site.
+        -->
       </nav>
     </header>
 
-    <!-- ==================== BANNER PRINCIPAL (HERO) ==================== -->
+    <!-- ==================== 2. BANNER PRINCIPAL (HERO) ==================== -->
     <section id="inicio" class="hero">
+      <!--
+        <section> é a tag semântica para "um bloco de conteúdo com tema
+        próprio" — cada parte grande da página (hero, especialidades,
+        sobre, cta) é uma <section> diferente.
+        id="inicio" é o alvo do link "Início" do menu, que vimos acima.
+        class="hero" é o nome "de mercado" para o banner grande do topo
+        de um site — é onde moram o título principal e a chamada de ação.
+      -->
+
       <div class="hero-conteudo">
-        <!-- 
-          NOVO: removi o "selo" em caixa alta que ficava acima do título
-          (ex: "CLÍNICA ODONTOLÓGICA"). Esse tipo de etiqueta some em quase
-          todo site feito rápido e não acrescenta nada — o título e o texto
-          já deixam claro do que se trata. Menos elementos, mais clareza.
-        -->
+        <!-- Essa <div> agrupa TUDO que é texto/botão do lado esquerdo do
+             banner, para o CSS conseguir controlar a largura desse bloco
+             separado da imagem do lado direito. -->
+
         <h1>Seu sorriso merece cuidado de verdade</h1>
+        <!--
+          <h1> é o título MAIS IMPORTANTE da página inteira — só deve
+          existir UM <h1> por página. Ele carrega bastante peso tanto
+          visualmente (é o texto maior) quanto para o Google entender do
+          que se trata a página.
+        -->
 
         <p>
           Unimos tecnologia atual e uma equipe atenciosa para cuidar da sua
           saúde bucal em cada etapa — da prevenção aos tratamentos mais
           completos. Agende sua avaliação e venha conhecer a clínica.
         </p>
+        <!-- <p> = "parágrafo": o texto de apoio que explica melhor o
+             título. Fica menor e com cor mais suave (isso é definido lá
+             no CSS, não aqui no HTML). -->
 
         <div class="hero-botoes">
+          <!-- Essa <div> só existe para colocar os dois botões lado a
+               lado (ou empilhados no celular) — de novo, é só uma
+               "caixa organizadora" para o CSS. -->
+
           <a
             href="https://api.whatsapp.com/send/?phone=5586981492207&text=Ol%C3%A1+%2C+gostaria+de+marcar+uma+avalia%C3%A7%C3%A3o"
             class="btn btn-primario"
@@ -72,38 +198,93 @@
             rel="noopener"
             >Agendar pelo WhatsApp</a
           >
+          <!--
+            Esse <a> é o botão principal. Vamos entender cada parte:
+            • href="https://api.whatsapp.com/..." → o link do WhatsApp.
+              Depois de "text=" vem a mensagem que já aparece pronta,
+              digitada, quando o visitante abre o WhatsApp (os "%20",
+              "%2C" etc são espaços e acentos "traduzidos" para um
+              formato que funciona dentro de um link, chamado URL encoding).
+            • class="btn btn-primario" → repare que tem DUAS classes
+              (separadas por espaço). "btn" traz o estilo BASE de
+              qualquer botão do site (tamanho, formato de pílula...) e
+              "btn-primario" traz a cor específica deste botão
+              (vermelho). Assim, "btn-secundario" pode reaproveitar
+              tudo de "btn" e só trocar a cor.
+            • target="_blank" → abre o link em uma ABA NOVA, em vez de
+              sair do seu site.
+            • rel="noopener" → uma boa prática de segurança que sempre
+              acompanha target="_blank": impede que a aba nova consiga
+              "enxergar" ou mexer na aba original.
+          -->
+
           <a href="#especialidades" class="btn btn-secundario">Ver tratamentos</a>
+          <!-- Botão secundário (com contorno, sem fundo colorido) que
+               rola a tela até a seção de especialidades. -->
         </div>
       </div>
 
-      <!-- 
-        NOVO: a foto agora tem uma "moldura" vermelha atrás dela, meio
-        deslocada — é só um retângulo (.hero-moldura) posicionado atrás da
-        imagem com position:absolute. Dá profundidade, como um quadro na
-        parede, sem precisar de nenhuma imagem extra.
-      -->
       <div class="hero-visual">
+        <!--
+          Essa <div> é o "porta-retrato" da foto. Ela precisa existir
+          separada da imagem porque, no CSS, vamos colocar um retângulo
+          vermelho ATRÁS da foto (a "moldura"), e os dois (moldura + foto)
+          precisam estar dentro da mesma caixa para se posicionarem um
+          em relação ao outro corretamente.
+        -->
         <div class="hero-moldura" aria-hidden="true"></div>
+        <!--
+          Essa <div> vazia é só um bloco colorido — a "moldura" vermelha
+          que aparece atrás da foto, deslocada, criando profundidade
+          (como um quadro na parede). Ela não tem texto nem imagem,
+          é 100% decoração, por isso: aria-hidden="true" avisa leitores
+          de tela para IGNORAR esse elemento — ele não carrega nenhuma
+          informação, só visual.
+        -->
         <img
           class="hero-foto"
           src="logo.jpg"
           alt="Fachada e identidade visual da clínica Odonto VITA"
         />
+        <!--
+          <img> é a tag de imagem — repare que ela NÃO tem uma tag de
+          fechamento </img>, ela se "autofecha" com a barra no final ( / ).
+          • src="logo.jpg" → o caminho do arquivo de imagem (precisa
+            estar na mesma pasta do index.html).
+          • alt="..." → um texto alternativo, MUITO importante: aparece
+            se a imagem não carregar, e é lido em voz alta por leitores
+            de tela para pessoas com deficiência visual. Sempre descreva
+            o que a imagem mostra.
+        -->
       </div>
     </section>
 
-    <!-- 
-      ==================== CARTÃO DE INFORMAÇÕES ====================
-      NOVO: antes isso era uma barra vermelha sólida ocupando a largura toda.
-      Agora é um cartão branco que "flutua" por cima da borda entre o hero
-      e a próxima seção (usando margin-top negativo no CSS). Fica mais leve
-      e elegante do que um bloco de cor forte.
+    <!--
+      ==================== 3. CARTÃO DE INFORMAÇÕES ====================
+      Esse bloco fica FORA de qualquer <section>, direto no <body>, de
+      propósito: ele precisa "flutuar" por cima da linha onde o hero
+      termina, então é mais fácil posicioná-lo como um elemento
+      independente (veja "margin-top negativo" no CSS, na classe
+      .cartao-infos, para entender a mágica de como ele sobe).
     -->
     <div class="cartao-infos">
       <div class="info-item">
+        <!-- Cada ".info-item" é um bloco: ícone + (título + texto). -->
         <span class="info-icone" aria-hidden="true">🕒</span>
+        <!--
+          <span> é parecido com <div>, mas é "inline" — pense nele como
+          uma caixinha pequena que fica NA LINHA do texto, ao lado de
+          outras coisas, em vez de empurrar tudo para uma linha nova
+          (que é o que <div> faria). Por isso usamos <span> para um
+          emoji/ícone pequeno, e <div> para blocos maiores.
+          aria-hidden="true" de novo aqui: o emoji é decorativo, o texto
+          ao lado já explica a mesma informação por escrito.
+        -->
         <div>
           <strong>Horário de Atendimento</strong>
+          <!-- <strong> deixa o texto em negrito E avisa que essa parte
+               tem IMPORTÂNCIA/ênfase (diferente da tag <b>, que é só
+               visual, sem significado). -->
           <p>Seg a Sex: 08h - 18h | Sáb: 08h - 12h</p>
         </div>
       </div>
@@ -113,6 +294,14 @@
         <div>
           <strong>Ligue para nós</strong>
           <p><a href="tel:+5586981492207" class="link-simples">(86) 98149-2207</a></p>
+          <!--
+            href="tel:+5586981492207" é um tipo especial de link: em vez
+            de abrir um site, ele diz ao celular "abra o discador de
+            chamadas com este número já preenchido". Ótimo para quem
+            acessa pelo celular e quer ligar com um toque.
+            class="link-simples" só remove o sublinhado/cor padrão de
+            link, para o número parecer texto normal (veja o CSS).
+          -->
         </div>
       </div>
 
@@ -125,9 +314,15 @@
       </div>
     </div>
 
-    <!-- ==================== SEÇÃO DE ESPECIALIDADES ==================== -->
+    <!-- ==================== 4. SEÇÃO DE ESPECIALIDADES ==================== -->
     <section id="especialidades" class="secao-especialidades">
       <div class="cabecalho-secao">
+        <!--
+          "cabecalho-secao" é um PADRÃO reaproveitado: título + parágrafo,
+          centralizados, com uma largura máxima para o texto não esticar
+          demais. Esse mesmo padrão é usado de novo lá embaixo, na seção
+          "Sobre Nós" — reaproveitar classes assim evita repetir estilo.
+        -->
         <h2>Nossas especialidades</h2>
         <p>
           Tratamentos completos para toda a família, com tecnologia de última
@@ -136,15 +331,34 @@
       </div>
 
       <div class="grid-especialidades">
+        <!--
+          Essa <div> é o "container" que organiza os 6 cards abaixo em
+          colunas automáticas. A mágica de "quantas colunas cabem" não
+          está aqui no HTML, está no CSS (propriedade display: grid).
+          O HTML só precisa colocar os cards, um atrás do outro, na
+          ordem que quer que apareçam.
+        -->
+
+        <!-- Card 1: cada card segue exatamente a mesma "receita":
+             ícone + título (h3) + parágrafo explicando o serviço. -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Clínica Geral</h3>
+          <!--
+            <h3> aqui, não <h1> nem <h2>: em HTML, os títulos formam uma
+            HIERARQUIA (h1 > h2 > h3 > h4...). Já usamos h1 no hero e h2
+            nos títulos das seções — então o nome de cada tratamento,
+            que é "um nível abaixo" do título da seção, vira h3. Isso
+            ajuda o Google e leitores de tela a entenderem a ordem de
+            importância do conteúdo.
+          -->
           <p>
             Prevenção, limpezas, restaurações e cuidados básicos para manter a
             saúde bucal em dia.
           </p>
         </div>
 
+        <!-- Card 2 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Ortodontia</h3>
@@ -154,6 +368,7 @@
           </p>
         </div>
 
+        <!-- Card 3 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Implantodontia</h3>
@@ -163,6 +378,7 @@
           </p>
         </div>
 
+        <!-- Card 4 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Odontopediatria</h3>
@@ -172,6 +388,7 @@
           </p>
         </div>
 
+        <!-- Card 5 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Clareamento Dental</h3>
@@ -180,6 +397,7 @@
           </p>
         </div>
 
+        <!-- Card 6 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Endodontia</h3>
@@ -191,9 +409,10 @@
       </div>
     </section>
 
-    <!-- ==================== SEÇÃO SOBRE NÓS E ESTATÍSTICAS ==================== -->
+    <!-- ==================== 5. SEÇÃO SOBRE NÓS E ESTATÍSTICAS ==================== -->
     <section id="sobre" class="secao-sobre">
       <div class="cabecalho-secao">
+        <!-- Mesmo padrão reaproveitado de título+parágrafo centralizado -->
         <h2>Sobre a Odonto VITA</h2>
         <p>
           Fundada com o propósito de transformar a relação das pessoas com o
@@ -204,14 +423,27 @@
         </p>
       </div>
 
-      <!-- 
-        NOVO: os números agora ficam lado a lado separados por uma linha fina
-        (border-left no CSS) em vez de três blocos soltos — parece mais uma
-        "faixa de credenciais" e menos três caixas repetidas.
-      -->
       <div class="estatisticas">
+        <!--
+          Cada ".dado" é um número grande + uma legenda pequena embaixo.
+          No CSS, uma linha fina (border-left) separa um do outro,
+          criando um efeito de "faixa de credenciais" em vez de três
+          caixas soltas.
+        -->
         <div class="dado">
           <h2>700+</h2>
+          <!--
+            ATENÇÃO PEDAGÓGICA: usar <h2> aqui de novo (mesmo nível do
+            título "Sobre a Odonto VITA" ali em cima) é uma pequena
+            "trapaça" comum: escolhemos h2 só pelo TAMANHO de fonte que
+            o CSS aplica em títulos h2 (queríamos o número BEM grande).
+            Do ponto de vista 100% correto de hierarquia, o ideal seria
+            usar uma tag sem peso semântico de título aqui (ex: uma
+            <div> ou <p> estilizada para parecer grande) — mas como isso
+            é um número de destaque isolado, e não atrapalha a leitura
+            da página, é uma simplificação aceitável para um site deste
+            tamanho.
+          -->
           <p>Pacientes atendidos</p>
         </div>
         <div class="dado">
@@ -225,15 +457,10 @@
       </div>
     </section>
 
-    <!-- ==================== FAIXA VERMELHA DE CHAMADA (CTA) ==================== -->
+    <!-- ==================== 6. FAIXA VERMELHA DE CHAMADA (CTA) ==================== -->
+    <!-- "CTA" = Call To Action = "Chamada para Ação": a parte do site
+         cujo único objetivo é convencer o visitante a clicar em algo. -->
     <section class="faixa-cta">
-      <!-- 
-        NOVO: essa curva em SVG é o único "toque de ousadia" visual do site —
-        uma linha que lembra um sorriso, separando o fundo claro do vermelho
-        de forma mais suave que uma borda reta. É só um desenho, não precisa
-        entender cada número do "path", é o mesmo princípio de desenhar uma
-        curva à mão, só que em código.
-      -->
       <svg
         class="curva-sorriso"
         viewBox="0 0 1200 80"
@@ -242,6 +469,19 @@
       >
         <path d="M0,0 C300,90 900,90 1200,0 L1200,80 L0,80 Z" fill="#FBF6F2"></path>
       </svg>
+      <!--
+        Isso é um SVG — um formato de IMAGEM feito de "instruções de
+        desenho" (linhas, curvas, formas), em vez de pixels. A vantagem é
+        que ele fica nítido em qualquer tamanho de tela.
+        • viewBox="0 0 1200 80" → define a "grade" imaginária onde o
+          desenho é feito: 1200 de largura por 80 de altura.
+        • <path d="..." /> → o "d" é a receita da forma, ponto a ponto.
+          Você NÃO precisa entender cada número — é o mesmo princípio de
+          desenhar uma curva à mão livre, só que descrita em coordenadas.
+          Aqui ela desenha uma curva parecida com um sorriso, separando
+          o fundo claro da seção anterior do vermelho desta seção, de um
+          jeito mais suave que uma linha reta.
+      -->
 
       <div class="faixa-cta-conteudo">
         <h2>Pronto para transformar seu sorriso?</h2>
@@ -256,16 +496,33 @@
           rel="noopener"
           >Agendar pelo WhatsApp</a
         >
+        <!-- Mesmo botão de WhatsApp de antes, mas agora na cor verde
+             (classe "btn-verde"), para reforçar visualmente "isso é o
+             WhatsApp" — as pessoas já associam verde ao aplicativo. -->
       </div>
     </section>
 
-    <!-- ==================== RODAPÉ FINAL E MAPA ==================== -->
+    <!-- ==================== 7. RODAPÉ FINAL E MAPA ==================== -->
     <footer id="localizacao" class="rodape">
+      <!--
+        <footer> é a tag semântica para "rodapé da página" — geralmente
+        traz contato, endereço, redes sociais e direitos autorais.
+        id="localizacao" é o alvo do link "Localização" do menu.
+      -->
       <div class="rodape-container">
+        <!-- Essa <div> divide o rodapé em DUAS colunas: informações de
+             contato (esquerda) e o mapa (direita). No celular, o CSS
+             empilha essas duas colunas uma embaixo da outra. -->
+
         <div class="rodape-infos">
           <h2>Localização e Contato</h2>
 
           <div class="lista-contato">
+            <!-- Repare que essa estrutura (ícone + título + texto) é
+                 IDÊNTICA à do "cartao-infos" lá em cima — é o mesmo
+                 padrão visual reaproveitado, só que com classes de nome
+                 diferente (".item-contato" em vez de ".info-item") por
+                 estarem em partes diferentes do site. -->
             <div class="item-contato">
               <span class="icone-contato" aria-hidden="true">📍</span>
               <div>
@@ -274,6 +531,13 @@
                   Av. Joaquim Nelson, Quadra 72, N° 14<br />Dirceu -
                   Teresina/PI, CEP 64078-600
                 </p>
+                <!--
+                  <br /> força uma quebra de linha DENTRO do parágrafo,
+                  no ponto exato que você escolher — diferente do
+                  navegador quebrar a linha sozinho quando o texto não
+                  cabe. Usamos aqui para separar "Dirceu, N°14" do
+                  "Dirceu - Teresina/PI" de forma mais organizada.
+                -->
               </div>
             </div>
 
@@ -295,6 +559,11 @@
           </div>
 
           <div class="rodape-redes">
+            <!--
+              Bloco de redes sociais: dois links, cada um com um ícone
+              SVG (desenhado direto no código, sem precisar de arquivo
+              de imagem) e um texto ao lado.
+            -->
             <a
               href="https://www.instagram.com/odontovita.the/"
               target="_blank"
@@ -302,9 +571,20 @@
               class="rede-social"
               aria-label="Instagram da Odonto VITA"
             >
+              <!--
+                aria-label="..." descreve o link para quem usa leitor de
+                tela — importante aqui porque, sem ele, um leitor de tela
+                só "veria" um ícone sem nome e o texto "@odontovita.the",
+                o que pode não deixar claro que é um link para o
+                Instagram.
+              -->
               <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
                 <path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5.01-4.73.07-.96.04-1.48.2-1.82.34-.46.18-.78.39-1.13.73-.34.34-.55.67-.73 1.13-.14.34-.3.86-.34 1.82C3.21 8.5 3.2 8.85 3.2 12s.01 3.5.07 4.73c.04.96.2 1.48.34 1.82.18.46.39.78.73 1.13.34.34.67.55 1.13.73.34.14.86.3 1.82.34 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c.96-.04 1.48-.2 1.82-.34.46-.18.78-.39 1.13-.73.34-.34.55-.67.73-1.13.14-.34.3-.86.34-1.82.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.04-.96-.2-1.48-.34-1.82-.18-.46-.39-.78-.73-1.13-.34-.34-.67-.55-1.13-.73-.34-.14-.86-.3-1.82-.34C15.5 4.01 15.15 4 12 4zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3zm5.15-1.98a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z"/>
               </svg>
+              <!-- "fill='currentColor'" é um truque útil: em vez de fixar
+                   uma cor no SVG, ele "herda" a cor do texto que está ao
+                   redor. Assim, quando o CSS muda a cor do link no hover,
+                   o ícone muda junto, automaticamente. -->
               <span>@odontovita.the</span>
             </a>
 
@@ -333,6 +613,21 @@
             allowfullscreen=""
             loading="lazy"
           ></iframe>
+          <!--
+            <iframe> incorpora uma PÁGINA INTEIRA de outro site dentro da
+            sua — nesse caso, o Google Maps. O "src" é um link especial
+            de "incorporação" gerado pelo próprio Google Maps (Compartilhar
+            → Incorporar mapa).
+            • title="..." descreve o conteúdo para leitores de tela —
+              obrigatório por regra de acessibilidade em todo <iframe>.
+            • loading="lazy" faz o mapa só carregar quando o visitante
+              rolar a página até perto dele, em vez de carregar tudo de
+              uma vez — deixa o site mais rápido para abrir.
+            • style="..." aqui dentro do próprio HTML é um estilo
+              "inline" (direto na tag). Normalmente evitamos isso e
+              colocamos tudo no style.css, mas para uma única propriedade
+              simples como essa, tanto faz — é só uma escolha prática.
+          -->
         </div>
       </div>
 
@@ -341,7 +636,7 @@
       </div>
     </footer>
 
-    <!-- Botão flutuante de WhatsApp, fixo no canto da tela (ver .whatsapp-flutuante no CSS) -->
+    <!-- ==================== 8. BOTÃO FLUTUANTE DE WHATSAPP ==================== -->
     <a
       href="https://api.whatsapp.com/send/?phone=5586981492207&text=Ol%C3%A1+%2C+gostaria+de+marcar+uma+avalia%C3%A7%C3%A3o"
       class="whatsapp-flutuante"
@@ -349,9 +644,21 @@
       rel="noopener"
       aria-label="Falar no WhatsApp"
     >
+      <!--
+        Repare que esse link fica FORA do <footer>, direto no <body>,
+        de propósito: no CSS ele usa "position: fixed", que faz ele
+        "grudar" na JANELA do navegador (não na página) — por isso
+        precisa estar solto, sem depender de nenhuma seção específica,
+        para aparecer sempre no mesmo lugar da tela, em qualquer parte
+        do site que o visitante estiver.
+      -->
       <svg viewBox="0 0 32 32" width="30" height="30" fill="#ffffff" aria-hidden="true">
         <path d="M16.01 3C9.38 3 4 8.38 4 15.01c0 2.2.59 4.27 1.62 6.05L4 29l8.14-1.58a12.9 12.9 0 0 0 3.87.6h.01c6.63 0 12.01-5.38 12.01-12.01C28.02 8.38 22.64 3 16.01 3zm0 21.9h-.01a10.85 10.85 0 0 1-5.54-1.52l-.4-.24-4.83.94.94-4.71-.26-.42a10.86 10.86 0 0 1-1.66-5.84c0-6 4.88-10.88 10.88-10.88 5.99 0 10.87 4.88 10.87 10.88 0 6-4.88 10.79-10.99 10.79zm5.96-8.14c-.32-.16-1.9-.94-2.2-1.05-.29-.11-.51-.16-.72.16-.21.32-.83 1.05-1.02 1.26-.19.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.6-.95-.85-1.59-1.9-1.78-2.22-.19-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.75-.99-2.4-.26-.62-.53-.54-.72-.55l-.62-.01c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65 0 1.56 1.14 3.07 1.3 3.28.16.21 2.24 3.42 5.43 4.79.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.4.19-1.53-.08-.13-.29-.21-.61-.37z"/>
       </svg>
     </a>
   </body>
+  <!-- Fim de tudo que aparece na tela. -->
 </html>
+<!-- Fim do documento HTML. Toda tag aberta lá em cima (<html>) precisa
+     ter sua tag de fechamento correspondente aqui — igual parênteses
+     que se abrem e se fecham. -->

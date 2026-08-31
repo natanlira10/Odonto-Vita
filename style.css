@@ -1,162 +1,269 @@
-/* ==================================================
-   VARIÁVEIS DE COR, FONTE E CONFIGURAÇÕES GERAIS
-   ==================================================
-   ":root" é uma "caixa de tinta" global: definimos cores e fontes com nomes
-   aqui, e usamos var(--nome) no resto do arquivo. Vantagem: para trocar a
-   cor principal do site inteiro, você muda em UM lugar só.
-*/
-:root {
-  /* Paleta: um vermelho mais profundo (menos "berrante" que antes) e uma
-     base creme quente, em vez de branco puro — dá um ar mais acolhedor,
-     coerente com uma clínica que cuida das pessoas. */
-  --vermelho-principal: #b5232b; /* vermelho principal da marca */
-  --vermelho-escuro: #7a151c; /* tom mais escuro, usado em gradientes e hover */
-  --vermelho-suave: #f4deda; /* vermelho bem clarinho, fundo de ícones e destaques */
-  --creme: #fbf6f2; /* fundo quente, substitui o branco puro em várias seções */
-  --branco: #ffffff;
-  --tinta: #241715; /* "preto" da marca — na verdade um marrom bem escuro, mais quente que preto puro */
-  --tinta-suave: #7a6560; /* cinza-marrom para textos secundários */
-  --verde-whatsapp: #22c55e;
-  --verde-whatsapp-hover: #16a34a;
+/*
+  ═══════════════════════════════════════════════════════════════════════
+  AULA: Este é o arquivo CSS — a "roupa" do HTML.
+  ═══════════════════════════════════════════════════════════════════════
+  Cada bloco de regra CSS tem essa forma:
 
-  /* Duas fontes com papéis diferentes: "Fraunces" (serifada, com "pezinhos")
-     para títulos grandes — dá personalidade e um ar mais elegante — e
-     "Work Sans" (sem serifa, mais neutra) para textos corridos, menu e
-     botões, porque precisa ser fácil de ler em qualquer tamanho. */
-  --fonte-titulo: "Fraunces", serif;
-  --fonte-texto: "Work Sans", sans-serif;
+    seletor {
+      propriedade: valor;
+    }
+
+  • "seletor" escolhe QUAIS elementos do HTML vão receber o estilo
+    (pode ser uma tag como "h1", uma classe como ".hero", um id como
+    "#inicio", ou uma combinação).
+  • "propriedade: valor;" define O QUÊ muda (cor, tamanho, espaçamento...)
+    e PARA QUAL valor. Sempre termina com ponto e vírgula.
+
+  Vamos por partes, de cima a baixo.
+*/
+
+/* ==================================================
+   1. VARIÁVEIS DE COR, FONTE E CONFIGURAÇÕES GERAIS
+   ================================================== */
+:root {
+  /*
+    ":root" representa o documento inteiro — é o lugar "mais alto" da
+    página, então qualquer variável criada aqui pode ser usada em
+    QUALQUER outra parte do CSS. Pense nisso como uma "caixa de tinta"
+    central: você mistura as cores uma vez aqui, e usa var(--nome-da-cor)
+    em qualquer lugar do arquivo depois.
+    VANTAGEM: se um dia quiser trocar o vermelho principal do site
+    inteiro, muda em UMA linha aqui, e todo o site atualiza sozinho.
+  */
+
+  --vermelho-principal: #b5232b; /* vermelho principal da marca */
+  --vermelho-escuro: #7a151c; /* tom mais escuro do mesmo vermelho, usado em gradientes e no hover (quando o mouse passa por cima) */
+  --vermelho-suave: #f4deda; /* vermelho bem clarinho, usado em fundos de ícone e detalhes discretos */
+  --creme: #fbf6f2; /* um fundo quase-branco, mas "quente" — usado como fundo de várias seções em vez de branco puro */
+  --branco: #ffffff;
+  --tinta: #241715; /* a cor "preta" do site — na verdade um marrom bem escuro, fica mais suave aos olhos que preto puro (#000) */
+  --tinta-suave: #7a6560; /* um cinza-marrom para textos secundários (parágrafos), com menos contraste que o texto principal */
+  --verde-whatsapp: #22c55e; /* verde oficial do botão de WhatsApp */
+  --verde-whatsapp-hover: #16a34a; /* verde mais escuro, para quando o mouse passa em cima do botão */
+
+  --fonte-titulo: "Fraunces", serif; /* a fonte usada em todo título (h1, h2, h3) */
+  --fonte-texto: "Work Sans", sans-serif; /* a fonte usada no texto corrido */
+  /*
+    Repare no formato: "Fraunces", serif — o navegador tenta usar
+    "Fraunces" primeiro (a fonte que baixamos do Google Fonts no HTML).
+    Se por algum motivo ela não carregar, ele usa "serif" como plano B
+    (qualquer fonte serifada padrão do sistema do usuário). O mesmo vale
+    para "Work Sans", sans-serif — sempre é bom ter um plano B.
+  */
 }
 
-/* Reset básico: remove margens/espaçamentos padrão que cada navegador aplica diferente */
+/* Reset básico: toda tag do HTML já vem com pequenas margens/espaçamentos
+   padrão do navegador (diferentes em cada navegador!). O "*" seleciona
+   TODOS os elementos da página e zera isso, para começarmos do zero. */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; /* padding e borda entram DENTRO da largura definida, evita medidas malucas */
-  font-family: var(--fonte-texto);
+  margin: 0; /* zera o espaço FORA do elemento */
+  padding: 0; /* zera o espaço DENTRO do elemento, entre a borda e o conteúdo */
+  box-sizing: border-box;
+  /*
+    box-sizing: border-box é uma das configurações mais importantes do
+    CSS: ela faz o padding e a borda de um elemento ENTRAREM dentro da
+    largura definida, em vez de SOMAREM a ela. Exemplo prático: se você
+    define width: 200px e depois adiciona padding: 20px, SEM essa
+    propriedade o elemento ficaria com 240px reais (200 + 20 de cada
+    lado). COM essa propriedade, ele continua com 200px no total, e o
+    padding "morde" o espaço interno. Evita muita dor de cabeça.
+  */
+  font-family: var(--fonte-texto); /* toda tag usa a fonte de texto por padrão (os títulos vão sobrescrever isso logo abaixo) */
 }
 
 html {
-  scroll-behavior: smooth; /* rolagem suave ao clicar em links do menu */
+  scroll-behavior: smooth;
+  /* Faz a página DESLIZAR suavemente até a seção certa quando você
+     clica em um link do menu (tipo #sobre), em vez de "teleportar"
+     direto sem transição. */
 }
 
 body {
-  background-color: var(--creme);
-  color: var(--tinta);
+  background-color: var(--creme); /* cor de fundo padrão de toda a página */
+  color: var(--tinta); /* cor de texto padrão de toda a página */
 }
 
-/* Título de qualquer nível (h1, h2, h3...) usa a fonte serifada por padrão */
 h1,
 h2,
 h3 {
-  font-family: var(--fonte-titulo);
-  font-weight: 560;
+  /* Essa regra vale para as três tags de título ao mesmo tempo (separadas
+     por vírgula) — assim não repetimos o mesmo código três vezes. */
+  font-family: var(--fonte-titulo); /* troca a fonte só dos títulos para a serifada "Fraunces" */
+  font-weight: 560; /* peso da fonte: quanto maior o número, mais grossa/negrita a letra fica (vai de ~100 até 900) */
   color: var(--tinta);
 }
 
-/* Acessibilidade: contorno visível ao navegar com o teclado (tecla Tab) em qualquer link */
 a:focus-visible {
-  outline: 2px solid var(--vermelho-principal);
-  outline-offset: 3px;
+  /*
+    ":focus-visible" é um "pseudo-seletor" — ele não escolhe uma tag ou
+    classe, escolhe um ESTADO: "quando este link está selecionado pelo
+    teclado" (a pessoa navegando com a tecla Tab, em vez de mouse).
+    Isso é acessibilidade: sem essa linha, alguém navegando só pelo
+    teclado não teria como saber em qual link está "parado" agora.
+  */
+  outline: 2px solid var(--vermelho-principal); /* desenha um contorno vermelho ao redor do link selecionado */
+  outline-offset: 3px; /* afasta esse contorno um pouquinho do link, para não colar em cima do texto */
 }
 
 /* ==================================================
-   CABEÇALHO E MENU (Navbar)
+   2. CABEÇALHO E MENU (Navbar)
    ================================================== */
 .cabecalho {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 22px 6%;
+  /*
+    "display: flex" é uma das propriedades mais usadas em CSS moderno.
+    Ela transforma esse elemento num "container flexível", onde os
+    filhos diretos dele (aqui: a logo e o menu) se organizam em LINHA,
+    lado a lado, automaticamente — sem precisar calcular posição manual.
+  */
+  justify-content: space-between; /* empurra o primeiro filho (logo) para a esquerda e o último (menu) para a direita, com o espaço sobrando distribuído no meio */
+  align-items: center; /* centraliza os filhos verticalmente dentro do cabeçalho */
+  padding: 22px 6%; /* espaço interno: 22px em cima/embaixo, 6% da largura da tela nas laterais */
   background-color: var(--branco);
-  position: sticky; /* gruda no topo ao rolar a página */
-  top: 0;
+  position: sticky;
+  /*
+    "position: sticky" faz o elemento "grudar" numa posição quando a
+    página rola. Ele se comporta normal até o momento de rolar até ele
+    — a partir daí, ele "gruda" no lugar definido por "top" abaixo, em
+    vez de sumir da tela.
+  */
+  top: 0; /* junto com sticky: gruda exatamente na borda de cima da tela (0px de distância) */
   z-index: 1000;
-  border-bottom: 1px solid #f1e4e1; /* linha fina em vez de sombra pesada — mais discreto */
+  /*
+    "z-index" controla qual elemento fica NA FRENTE de qual, quando dois
+    se sobrepõem (funciona como camadas de um desenho no Photoshop).
+    Número maior = fica na frente. Colocamos um número alto aqui porque
+    o cabeçalho precisa ficar por cima do conteúdo que rola por baixo dele.
+  */
+  border-bottom: 1px solid #f1e4e1; /* uma linha bem fina embaixo do cabeçalho, para separar visualmente do resto da página, sem usar uma sombra pesada */
 }
 
 .logo h2 {
   color: var(--tinta);
   font-weight: 650;
   font-size: 22px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.2px; /* aumenta um pouquinho o espaço entre as letras — deixa a palavra mais "arejada" */
 }
 .logo span {
-  color: var(--vermelho-principal);
+  color: var(--vermelho-principal); /* pinta só o "VITA" (que está dentro do <span> no HTML) de vermelho */
 }
 
 .menu {
   display: flex;
-  gap: 34px; /* espaço entre os links do menu (substitui margin-left individual) */
+  gap: 34px;
+  /* "gap" define o espaço ENTRE os filhos de um flex/grid container —
+     é mais simples que dar margin individual em cada link. */
 }
 .menu a {
-  position: relative; /* necessário para a linha de baixo (::after) se posicionar */
-  text-decoration: none;
+  position: relative;
+  /*
+    "position: relative" aqui não move o link de lugar nenhum — ele só
+    serve para "avisar" o navegador: "qualquer coisa com position:
+    absolute DENTRO deste elemento vai se posicionar em relação a ELE".
+    Isso é necessário por causa do ".menu a::after" logo abaixo.
+  */
+  text-decoration: none; /* remove o sublinhado padrão que todo link tem */
   color: var(--tinta);
   font-weight: 500;
   font-size: 15px;
-  padding-bottom: 4px;
+  padding-bottom: 4px; /* um respiro embaixo do texto, para a linha do hover (abaixo) não colar nas letras */
 }
-/* 
-  Esse "::after" cria uma linha fininha embaixo do link, começando com
-  largura 0 (invisível) e crescendo até 100% quando o mouse passa em cima —
-  uma forma mais sutil de indicar "hover" do que só trocar a cor do texto.
-*/
 .menu a::after {
-  content: "";
-  position: absolute;
+  /*
+    "::after" é um "pseudo-elemento" — ele cria um elemento invisível
+    extra DEPOIS do conteúdo real do link, sem precisar escrever uma
+    tag nova no HTML. Usamos ele aqui só para desenhar a linha animada
+    embaixo do link quando o mouse passa por cima.
+  */
+  content: ""; /* obrigatório para todo ::after existir — mesmo vazio, sempre precisa dessa propriedade */
+  position: absolute; /* se posiciona em relação ao link (por causa do "position: relative" que vimos acima) */
   left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 0%;
+  bottom: 0; /* gruda embaixo do link */
+  height: 2px; /* a "linha" tem 2px de altura */
+  width: 0%; /* COMEÇA com largura zero — ou seja, invisível */
   background-color: var(--vermelho-principal);
   transition: width 0.25s ease;
+  /*
+    "transition" diz: "quando a propriedade 'width' mudar de valor, não
+    troque de repente — anime a mudança suavemente, em 0.25 segundos".
+    Sem essa linha, a largura pularia de 0% para 100% instantaneamente.
+  */
 }
 .menu a:hover::after {
-  width: 100%;
+  width: 100%; /* quando o mouse passa em cima do link (:hover), a linha cresce até cobrir a largura toda do texto */
 }
 .menu a:hover {
-  color: var(--vermelho-principal);
+  color: var(--vermelho-principal); /* o texto do link também fica vermelho no hover */
 }
 
 /* ==================================================
-   BOTÕES
+   3. BOTÕES
    ================================================== */
 .btn {
+  /*
+    Essa classe "btn" traz o estilo BASE de qualquer botão do site —
+    tamanho, formato, alinhamento do texto. As outras classes
+    (btn-primario, btn-secundario, btn-verde) só adicionam a COR por
+    cima, e são usadas SEMPRE junto com "btn" no HTML (class="btn btn-primario").
+  */
   display: inline-flex;
+  /* Parecido com "flex", mas se comporta como um elemento "inline" (fica
+     na linha do texto ao redor) em vez de ocupar a linha toda sozinho. */
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* centraliza o texto dentro do botão, tanto na vertical quanto na horizontal */
   padding: 14px 30px;
-  border-radius: 999px; /* valor bem alto = formato de pílula */
+  border-radius: 999px;
+  /* border-radius arredonda os cantos. Um valor bem alto como 999px,
+     maior que a própria altura do botão, faz ele virar uma "pílula"
+     perfeitamente arredondada nas pontas. */
   font-weight: 600;
   font-size: 15.5px;
-  text-decoration: none;
+  text-decoration: none; /* como o botão é feito com a tag <a>, removemos o sublinhado padrão de link */
   transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  /* Aqui animamos TRÊS propriedades diferentes ao mesmo tempo (separadas
+     por vírgula), cada uma podendo ter sua própria duração se quisesse. */
 }
 
 .btn-primario {
   background: linear-gradient(135deg, var(--vermelho-principal), var(--vermelho-escuro));
+  /*
+    "linear-gradient" cria uma transição suave entre duas (ou mais)
+    cores, em vez de uma cor sólida. "135deg" é o ÂNGULO da transição
+    (aqui, na diagonal). O resultado: o botão vai ficando mais escuro
+    conforme desce para o canto inferior direito — dá uma sensação de
+    profundidade/volume.
+  */
   color: var(--branco);
   box-shadow: 0 10px 24px -8px rgba(181, 35, 43, 0.55);
+  /*
+    box-shadow adiciona uma sombra. Os quatro primeiros números são:
+    deslocamento horizontal, deslocamento vertical, desfoque, e espalhamento.
+    "rgba(181, 35, 43, 0.55)" é a cor da sombra em formato RGB + Alpha —
+    os 3 primeiros números são a cor (vermelho) e o último (0.55) é a
+    TRANSPARÊNCIA (0 = invisível, 1 = totalmente opaco). Usamos uma
+    sombra da MESMA cor do botão, não cinza — fica mais elegante e
+    "combinando" do que uma sombra cinza genérica.
+  */
 }
 .btn-primario:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 28px -8px rgba(181, 35, 43, 0.6);
+  transform: translateY(-2px); /* "translateY(-2px)" move o botão 2px PARA CIMA (valores negativos em Y sobem, positivos descem) */
+  box-shadow: 0 14px 28px -8px rgba(181, 35, 43, 0.6); /* sombra um pouco maior/mais forte no hover, reforçando que o botão "subiu" */
 }
 
 .btn-secundario {
-  background-color: transparent;
+  background-color: transparent; /* sem cor de fundo — só a borda aparece */
   color: var(--tinta);
-  border: 1.5px solid #ddc9c5;
+  border: 1.5px solid #ddc9c5; /* borda fina cinza-rosada */
 }
 .btn-secundario:hover {
-  border-color: var(--vermelho-principal);
-  color: var(--vermelho-principal);
+  border-color: var(--vermelho-principal); /* a borda fica vermelha no hover */
+  color: var(--vermelho-principal); /* o texto também */
 }
 
 .btn-verde {
   background-color: var(--verde-whatsapp);
   color: var(--branco);
-  padding: 16px 34px;
+  padding: 16px 34px; /* um pouco maior que o botão padrão, para se destacar como CTA principal da faixa vermelha */
   font-size: 16.5px;
   box-shadow: 0 10px 24px -8px rgba(34, 197, 94, 0.5);
 }
@@ -166,96 +273,146 @@ a:focus-visible {
 }
 
 .link-simples {
-  color: inherit;
+  color: inherit; /* "inherit" diz: "use a MESMA cor do elemento pai" — assim o número de telefone não fica azul feito link padrão */
   text-decoration: none;
 }
 
 /* ==================================================
-   BANNER PRINCIPAL (HERO)
+   4. BANNER PRINCIPAL (HERO)
    ================================================== */
 .hero {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
+  align-items: center; /* centraliza o texto e a imagem verticalmente, um ao lado do outro */
+  justify-content: space-between; /* texto todo à esquerda, imagem toda à direita */
+  gap: 60px; /* espaço mínimo garantido entre o texto e a imagem */
   padding: 90px 6% 60px 6%;
+  /* Quatro valores em "padding" seguem a ordem: TOPO, DIREITA, BAIXO,
+     ESQUERDA (sentido horário, começando de cima) — aqui, 90px em cima,
+     6% nas laterais, e só 60px embaixo (porque o cartão de informações
+     vai "flutuar" logo depois, então não precisa de tanto respiro). */
   background-color: var(--creme);
 }
 
 .hero-conteudo {
-  max-width: 46%;
+  max-width: 46%; /* o bloco de texto nunca ultrapassa quase metade da largura do hero, deixando espaço garantido para a imagem */
 }
 
 .hero-conteudo h1 {
-  font-size: clamp(2.6rem, 1.6rem + 2.4vw, 3.8rem); /* tamanho que se ajusta sozinho entre telas pequenas e grandes */
-  line-height: 1.12;
+  font-size: clamp(2.6rem, 1.6rem + 2.4vw, 3.8rem);
+  /*
+    "clamp(mínimo, valor-flexível, máximo)" é uma forma de fazer um
+    tamanho de fonte "responsivo" sem precisar escrever várias media
+    queries. Aqui: o título NUNCA fica menor que 2.6rem nem maior que
+    3.8rem, e no meio termo ele cresce proporcionalmente à largura da
+    tela (o "vw" = "viewport width", 1% da largura da janela).
+  */
+  line-height: 1.12; /* controla o espaço vertical entre as linhas do título, quando ele quebra em mais de uma linha */
   margin-bottom: 22px;
 }
 
 .hero-conteudo p {
   font-size: 1.1rem;
   color: var(--tinta-suave);
-  line-height: 1.7;
+  line-height: 1.7; /* parágrafos ficam mais fáceis de ler com um espaçamento de linha maior que os títulos */
   margin-bottom: 38px;
-  max-width: 34ch; /* "ch" = largura da letra "0" da fonte; limita a linha a ~34 caracteres, facilita a leitura */
+  max-width: 34ch;
+  /*
+    "ch" é uma unidade de medida baseada na largura do caractere "0" da
+    fonte atual. "34ch" significa "no máximo, mais ou menos 34 letras de
+    largura por linha" — isso é uma regra clássica de tipografia: linhas
+    muito longas cansam os olhos, então limitamos a largura do parágrafo.
+  */
 }
 
 .hero-botoes {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* se não couber os dois botões lado a lado (tela muito estreita), o segundo quebra para a linha de baixo em vez de espremer */
 }
 
-/* 
-  O container da imagem precisa de "position: relative" para que a moldura
-  (.hero-moldura), que é "position: absolute", se posicione EM RELAÇÃO a ele,
-  e não em relação à página toda.
-*/
 .hero-visual {
   position: relative;
+  /* Necessário para a moldura vermelha (que usa position: absolute) se
+     posicionar EM RELAÇÃO a esta caixa, e não à página inteira. */
   width: 42%;
 }
 
 .hero-moldura {
   position: absolute;
-  inset: 18px -18px -18px 18px; /* desloca o retângulo: topo/esquerda entram 18px, baixo/direita saem 18px */
+  /*
+    "position: absolute" tira o elemento do fluxo normal da página — ele
+    passa a se posicionar usando as propriedades top/right/bottom/left,
+    sempre em relação ao "ancestral" mais próximo que tenha position:
+    relative (no nosso caso, o .hero-visual).
+  */
+  inset: 18px -18px -18px 18px;
+  /*
+    "inset" é um jeito curto de escrever top, right, bottom e left de
+    uma vez só, na mesma ordem do padding (topo, direita, baixo,
+    esquerda). Aqui: o topo e a esquerda "entram" 18px para dentro, mas
+    a direita e o baixo "saem" -18px para FORA — é isso que cria o
+    efeito de moldura deslocada, maior que a foto e enviesada para um lado.
+  */
   background: linear-gradient(135deg, var(--vermelho-principal), var(--vermelho-escuro));
-  border-radius: 28px 8px 28px 8px; /* cantos alternados = forma menos "caixa genérica" */
-  z-index: 1;
+  border-radius: 28px 8px 28px 8px;
+  /*
+    Quando border-radius recebe 4 valores, eles arredondam os 4 cantos
+    em ordem: superior-esquerdo, superior-direito, inferior-direito,
+    inferior-esquerdo. Usar valores DIFERENTES entre eles (28px, 8px,
+    28px, 8px) cria um formato mais orgânico/único do que os 4 cantos
+    exatamente iguais, que é o visual "padrão" de qualquer cartão.
+  */
+  z-index: 1; /* fica ATRÁS da foto (que vamos configurar com z-index: 2 a seguir) */
 }
 
 .hero-foto {
-  position: relative;
+  position: relative; /* precisa disso para o z-index funcionar corretamente */
   z-index: 2; /* garante que a foto fique NA FRENTE da moldura vermelha */
   width: 100%;
   aspect-ratio: 4 / 5;
-  object-fit: cover; /* a imagem preenche o espaço sem distorcer, cortando o excedente */
-  border-radius: 8px 28px 8px 28px; /* cantos opostos aos da moldura, criando o efeito de "quadro deslocado" */
-  display: block;
+  /* "aspect-ratio" trava a proporção largura:altura da imagem — aqui,
+     4 de largura para cada 5 de altura (um formato "retrato", mais alto
+     que largo), não importa o tamanho real do arquivo da foto. */
+  object-fit: cover;
+  /* Quando a proporção da imagem original não bate com o aspect-ratio
+     definido, "cover" faz a imagem PREENCHER todo o espaço, cortando o
+     que sobrar, em vez de distorcer/esticar a imagem. */
+  border-radius: 8px 28px 8px 28px;
+  /* Cantos arredondados no padrão OPOSTO da moldura de trás — reforça
+     visualmente o efeito de "quadro por trás, foto na frente, deslocados". */
+  display: block; /* remove um pequeno espaço fantasma que imagens têm por padrão embaixo delas quando NÃO são "block" */
 }
 
 /* ==================================================
-   CARTÃO DE INFORMAÇÕES (flutuando sobre o hero)
+   5. CARTÃO DE INFORMAÇÕES (flutuando sobre o hero)
    ================================================== */
 .cartao-infos {
   max-width: 1100px;
-  margin: -46px auto 0 auto; /* margin-top NEGATIVO puxa o cartão para cima, sobrepondo o hero */
+  margin: -46px auto 0 auto;
+  /*
+    Aqui está a "mágica" do cartão flutuante: margin-top NEGATIVO (-46px)
+    PUXA o elemento para CIMA, sobrepondo o final do hero, em vez de
+    empurrá-lo para baixo (que é o que margin positivo faria). O "auto"
+    nas laterais centraliza o cartão horizontalmente na página.
+  */
   background-color: var(--branco);
   border-radius: 20px;
   box-shadow: 0 24px 48px -16px rgba(36, 23, 21, 0.18);
+  /* Sombra suave e espalhada, dando a sensação de que o cartão está
+     "flutuando" de verdade acima do resto do conteúdo. */
   display: flex;
   justify-content: space-between;
   padding: 34px 5%;
-  position: relative;
+  position: relative; /* junto com o z-index abaixo, garante que o cartão fique visualmente por cima do que está embaixo dele */
   z-index: 10;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* no celular, os 3 itens podem quebrar linha em vez de espremer */
   gap: 24px;
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 14px; /* espaço entre o ícone e o texto */
 }
 
 .info-icone {
@@ -263,15 +420,21 @@ a:focus-visible {
   width: 44px;
   height: 44px;
   flex-shrink: 0;
+  /* Sem isso, num espaço apertado o navegador poderia "espremer" o
+     círculo do ícone para caber — flex-shrink: 0 proíbe isso, mantendo
+     sempre 44x44px fixos. */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* centraliza o emoji dentro do círculo, tanto na vertical quanto na horizontal */
   background-color: var(--vermelho-suave);
-  border-radius: 50%;
+  border-radius: 50%; /* 50% em um elemento quadrado (44x44) forma um CÍRCULO perfeito */
 }
 
 .info-item strong {
   display: block;
+  /* Tags como <strong> são "inline" por padrão (ficam na linha do
+     texto). "display: block" faz ela ocupar a própria linha inteira,
+     empurrando o <p> que vem depois para a linha de baixo. */
   font-size: 15.5px;
   margin-bottom: 3px;
 }
@@ -281,12 +444,12 @@ a:focus-visible {
 }
 
 /* ==================================================
-   TÍTULOS DE SEÇÕES
+   6. TÍTULOS DE SEÇÕES
    ================================================== */
 .cabecalho-secao {
   text-align: center;
   max-width: 620px;
-  margin: 0 auto 56px auto;
+  margin: 0 auto 56px auto; /* "auto" nas laterais centraliza o bloco inteiro na página */
 }
 .cabecalho-secao h2 {
   font-size: clamp(2rem, 1.6rem + 1.2vw, 2.7rem);
@@ -299,7 +462,7 @@ a:focus-visible {
 }
 
 /* ==================================================
-   ESPECIALIDADES
+   7. ESPECIALIDADES
    ================================================== */
 .secao-especialidades {
   padding: 130px 6% 110px 6%;
@@ -308,21 +471,35 @@ a:focus-visible {
 
 .grid-especialidades {
   display: grid;
+  /*
+    "display: grid" organiza os filhos em LINHAS E COLUNAS ao mesmo
+    tempo — diferente de "flex", que organiza numa direção só.
+  */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 26px;
+  /*
+    Essa linha, por partes:
+    • "minmax(300px, 1fr)" diz: cada coluna tem NO MÍNIMO 300px, mas
+      pode CRESCER (1fr = "1 fração do espaço disponível") para
+      preencher a tela.
+    • "repeat(auto-fit, ...)" diz: repita essa regra quantas vezes
+      couber na largura da tela, calculando sozinho.
+    O resultado: em uma tela larga cabem 3 colunas, numa média cabem 2,
+    e no celular vira 1 coluna — TUDO isso sem escrever nenhuma media
+    query extra para esse grid específico.
+  */
+  gap: 26px; /* espaço entre os cards, tanto na horizontal quanto na vertical */
 }
 
 .card-especialidade {
   background-color: var(--creme);
   padding: 36px 28px;
-  /* Cantos assimétricos (não os 4 iguais) para fugir do visual "cartão de app" genérico */
-  border-radius: 26px 8px 26px 8px;
-  border: 1px solid #f1e4e1; /* borda fina no lugar de sombra pesada — mais discreto */
+  border-radius: 26px 8px 26px 8px; /* cantos assimétricos, igual explicamos na moldura da foto — foge do "cartão de app" genérico */
+  border: 1px solid #f1e4e1; /* borda fina no lugar de uma sombra pesada — visual mais discreto/editorial */
   transition: border-color 0.25s ease, transform 0.25s ease;
 }
 .card-especialidade:hover {
-  border-color: var(--vermelho-principal);
-  transform: translateY(-4px);
+  border-color: var(--vermelho-principal); /* a borda vira vermelha quando o mouse passa por cima */
+  transform: translateY(-4px); /* o card "sobe" um pouco, dando sensação de destaque */
 }
 
 .icone-check {
@@ -340,7 +517,11 @@ a:focus-visible {
 }
 
 .card-especialidade h3 {
-  font-family: var(--fonte-texto); /* títulos de card usam a fonte sem-serifa (contraste com os títulos grandes em serifa) */
+  font-family: var(--fonte-texto);
+  /* Aqui sobrescrevemos a fonte serifada padrão dos títulos (definida lá
+     em cima, na regra "h1, h2, h3") de volta para a fonte sem-serifa —
+     um contraste proposital: títulos GRANDES usam a fonte elegante,
+     títulos PEQUENOS de card usam a fonte mais neutra/funcional. */
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 10px;
@@ -352,7 +533,7 @@ a:focus-visible {
 }
 
 /* ==================================================
-   SOBRE NÓS E ESTATÍSTICAS
+   8. SOBRE NÓS E ESTATÍSTICAS
    ================================================== */
 .secao-sobre {
   padding: 110px 6%;
@@ -367,18 +548,24 @@ a:focus-visible {
 }
 
 .dado {
-  padding: 0 48px;
-  border-left: 1px solid #e6d3ce; /* linha fina separando os números, em vez de 3 caixas soltas */
+  padding: 0 48px; /* respiro nas laterais de cada número */
+  border-left: 1px solid #e6d3ce; /* linha fina separando um número do outro */
 }
 .dado:first-child {
-  border-left: none; /* o primeiro item não precisa de linha à esquerda */
+  /*
+    ":first-child" seleciona só o PRIMEIRO ".dado" dentro do
+    ".estatisticas" — usamos isso para remover a linha da esquerda só
+    do primeiro item (senão ficaria uma linha "sobrando" antes do
+    primeiro número, sem nada à esquerda dela para separar).
+  */
+  border-left: none;
   padding-left: 0;
 }
 
 .dado h2 {
   font-size: 3.4rem;
   color: var(--vermelho-principal);
-  line-height: 1;
+  line-height: 1; /* line-height 1 remove o espaço "extra" que normalmente sobra em cima/embaixo de um texto grande */
   margin-bottom: 10px;
 }
 .dado p {
@@ -389,17 +576,19 @@ a:focus-visible {
 }
 
 /* ==================================================
-   FAIXA DE CHAMADA (CTA)
+   9. FAIXA DE CHAMADA (CTA)
    ================================================== */
 .faixa-cta {
-  position: relative;
+  position: relative; /* necessário para a curva SVG (que também usa layout interno) se comportar corretamente */
   background: linear-gradient(160deg, var(--vermelho-principal), var(--vermelho-escuro));
   color: var(--branco);
   text-align: center;
-  overflow: hidden; /* garante que a curva SVG não vaze para fora da seção */
+  overflow: hidden;
+  /* "overflow: hidden" corta qualquer coisa que ultrapasse os limites
+     desta seção — garante que a curva SVG não "vaze" para fora da
+     faixa vermelha por engano. */
 }
 
-/* A curva SVG fica encostada no topo da seção, "cortando" a transição de forma suave */
 .curva-sorriso {
   display: block;
   width: 100%;
@@ -420,11 +609,11 @@ a:focus-visible {
   color: #f4d9d6;
   max-width: 46ch;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; /* centraliza o parágrafo mesmo tendo uma largura máxima definida */
 }
 
 /* ==================================================
-   RODAPÉ E LOCALIZAÇÃO
+   10. RODAPÉ E LOCALIZAÇÃO
    ================================================== */
 .rodape {
   background-color: var(--branco);
@@ -440,6 +629,9 @@ a:focus-visible {
 
 .rodape-infos {
   flex: 1;
+  /* "flex: 1" diz: "cresça para ocupar o espaço disponível, dividindo
+     igualmente com os outros irmãos que também têm flex: 1" — nesse
+     caso, dividindo meio a meio com ".rodape-mapa" logo abaixo. */
 }
 
 .rodape-infos h2 {
@@ -450,12 +642,18 @@ a:focus-visible {
 .lista-contato {
   display: flex;
   flex-direction: column;
+  /* "flex-direction: column" muda a direção do flex de "linha" (padrão)
+     para "coluna" — os filhos empilham de cima para baixo, em vez de
+     ficarem lado a lado. */
   gap: 28px;
 }
 
 .item-contato {
   display: flex;
   align-items: flex-start;
+  /* "flex-start" alinha os itens pelo TOPO, em vez do centro — útil
+     aqui porque o texto ao lado do ícone pode quebrar em duas linhas,
+     e queremos o ícone alinhado com a PRIMEIRA linha do texto. */
   gap: 15px;
 }
 
@@ -474,7 +672,7 @@ a:focus-visible {
 }
 
 .rodape-mapa {
-  flex: 1;
+  flex: 1; /* ocupa o espaço disponível do lado direito, igual ao .rodape-infos do lado esquerdo */
 }
 
 .rodape-redes {
@@ -505,12 +703,18 @@ a:focus-visible {
 }
 
 /* ==================================================
-   BOTÃO FLUTUANTE DE WHATSAPP
+   11. BOTÃO FLUTUANTE DE WHATSAPP
    ================================================== */
 .whatsapp-flutuante {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  /*
+    "position: fixed" é parecido com "sticky", mas mais "grudento":
+    o elemento fica preso na TELA (na janela do navegador), não na
+    página. Mesmo rolando a página inteira até o final, esse botão
+    continua exatamente no mesmo pixel da tela.
+  */
+  bottom: 24px; /* distância da borda de BAIXO da tela */
+  right: 24px; /* distância da borda da DIREITA da tela */
   width: 60px;
   height: 60px;
   background-color: var(--verde-whatsapp);
@@ -519,26 +723,33 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.35);
-  z-index: 2000;
+  z-index: 2000; /* número bem alto, para garantir que fique por cima de TUDO no site, inclusive do cabeçalho fixo */
   transition: transform 0.25s ease, background-color 0.25s ease;
 }
 .whatsapp-flutuante:hover {
-  transform: scale(1.08);
+  transform: scale(1.08); /* "scale" aumenta (ou diminui) o TAMANHO do elemento — 1.08 = 8% maior que o normal */
   background-color: var(--verde-whatsapp-hover);
 }
 
 /* ==================================================
-   RESPONSIVIDADE (Tablets: até 992px)
-   ================================================== */
+   12. RESPONSIVIDADE (Tablets: telas até 992px)
+   ==================================================
+   Isso é uma "media query": um bloco de regras que só entra em vigor
+   quando a LARGURA DA TELA é menor ou igual ao valor entre parênteses.
+   Repare que aqui dentro repetimos alguns seletores que já existem lá
+   em cima (tipo ".hero") — quando isso acontece, a regra de DENTRO da
+   media query "ganha" da de cima, mas SÓ quando a tela é pequena o
+   suficiente para ativar essa media query.
+*/
 @media (max-width: 992px) {
   .hero {
-    flex-direction: column;
+    flex-direction: column; /* em telas menores, o texto e a imagem deixam de ficar lado a lado e passam a empilhar */
     text-align: center;
     padding-top: 60px;
   }
   .hero-conteudo,
   .hero-visual {
-    max-width: 100%;
+    max-width: 100%; /* já que não estão mais lado a lado, cada bloco pode ocupar a largura toda disponível */
     width: 100%;
   }
   .hero-conteudo p {
@@ -550,19 +761,22 @@ a:focus-visible {
     justify-content: center;
   }
   .hero-visual {
-    max-width: 420px; /* impede que a foto fique gigante numa tela larga em modo retrato */
+    max-width: 420px; /* impede que a foto fique enorme numa tela de tablet larga */
     margin: 40px auto 60px auto;
   }
 
   .cartao-infos {
     flex-direction: column;
-    margin-top: -30px;
+    margin-top: -30px; /* um pouco menos "puxado para cima" que no desktop, porque o hero também ficou menor */
   }
   .info-item {
     justify-content: center;
   }
   .info-item > div {
-    text-align: left;
+    /* O seletor "> div" seleciona só a <div> que é FILHA DIRETA de
+       ".info-item" (o bloco com o título e o texto), sem afetar
+       nenhuma outra div dentro dela por engano. */
+    text-align: left; /* mesmo com o item inteiro centralizado, o texto dentro dele continua alinhado à esquerda, mais fácil de ler */
   }
 
   .rodape-container {
@@ -583,8 +797,8 @@ a:focus-visible {
     gap: 30px;
   }
   .dado {
-    border-left: none;
-    border-top: 1px solid #e6d3ce;
+    border-left: none; /* em coluna, uma linha à ESQUERDA não faz mais sentido visual */
+    border-top: 1px solid #e6d3ce; /* então trocamos por uma linha EM CIMA de cada item */
     padding: 24px 0 0 0;
   }
   .dado:first-child {
@@ -594,11 +808,14 @@ a:focus-visible {
 }
 
 /* ==================================================
-   RESPONSIVIDADE (Celulares: até 640px)
-   ================================================== */
+   13. RESPONSIVIDADE (Celulares: telas até 640px)
+   ==================================================
+   Uma segunda media query, mais restrita (só ativa em telas ainda
+   menores), para ajustes finos que só fazem sentido em celular.
+*/
 @media (max-width: 640px) {
   .cabecalho {
-    flex-direction: column;
+    flex-direction: column; /* empilha a logo em cima e o menu embaixo, em vez de tentar caber os dois lado a lado numa tela estreita */
     gap: 14px;
     padding: 18px 5%;
   }
@@ -606,10 +823,13 @@ a:focus-visible {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px 20px;
+    /* Quando "gap" recebe DOIS valores, o primeiro é o espaço ENTRE
+       LINHAS (se o menu quebrar) e o segundo é o espaço entre itens na
+       MESMA linha. */
   }
 
   .whatsapp-flutuante {
-    width: 52px;
+    width: 52px; /* um pouco menor no celular, para ocupar menos espaço da tela pequena */
     height: 52px;
     bottom: 16px;
     right: 16px;
