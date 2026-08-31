@@ -1,141 +1,107 @@
 <!doctype html>
 <!-- 
-  Este arquivo é o HTML do site. HTML é a "estrutura" da página:
-  ele define o que existe (títulos, textos, botões, imagens),
-  enquanto o CSS (style.css) define a aparência (cores, tamanhos, espaçamentos).
+  Este arquivo é o HTML do site: a ESTRUTURA da página (o que existe: títulos,
+  textos, botões, imagens). O CSS (style.css) define a APARÊNCIA (cores, fontes,
+  espaçamentos). Comentários como este explicam cada parte para você estudar.
 -->
 <html lang="pt-BR">
-  <!-- lang="pt-BR" avisa o navegador (e o Google) que o site está em português do Brasil -->
-
   <head>
-    <!-- 
-      Tudo dentro de <head> não aparece na tela.
-      São "informações de configuração" da página (metadados).
-    -->
-
     <meta charset="UTF-8" />
-    <!-- Define a codificação de caracteres. Isso evita que acentos (ç, ã, é...) apareçam quebrados -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Essencial para celular: diz ao navegador para usar a largura real da tela do aparelho -->
 
     <meta
       name="description"
       content="Odonto VITA é uma clínica odontológica em Teresina (Dirceu). Clínica geral, ortodontia, implantes, odontopediatria, clareamento e endodontia. Agende pelo WhatsApp."
     />
-    <!-- 
-      MELHORIA: meta description.
-      Esse texto é o que aparece no resultado do Google embaixo do título do site.
-      Ajuda o cliente a ser encontrado (SEO) e não muda nada visualmente na página.
-    -->
 
     <title>Odonto VITA | Clínica Odontológica</title>
-    <!-- Título que aparece na aba do navegador e no resultado do Google -->
 
     <link rel="stylesheet" href="style.css" />
-    <!-- Aqui conectamos o arquivo de estilo (CSS). Sem essa linha, o site fica "sem roupa", só texto puro -->
 
-    <!-- Importando a fonte 'Inter', que é a mesma utilizada pelo Tailwind/IA para dar um tom moderno -->
+    <!-- 
+      NOVO: trocamos a fonte única "Inter" por uma DUPLA de fontes, que é uma
+      técnica clássica de design: uma serifada (com "pezinhos") para os títulos
+      grandes, transmitindo cuidado/elegância, e uma sem-serifa limpa para o
+      resto do texto, garantindo leitura fácil. "Fraunces" = títulos.
+      "Work Sans" = texto normal, menus e botões.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,560;9..144,650&family=Work+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Isso baixa a fonte "Inter" do Google Fonts, em 4 pesos (400=normal, 600, 700, 800=bem grosso) -->
   </head>
 
   <body>
-    <!-- Tudo dentro de <body> é o que realmente aparece na tela para o visitante -->
-
-    <!-- ==================== CABEÇALHO (MENU FIXO NO TOPO) ==================== -->
+    <!-- ==================== CABEÇALHO ==================== -->
     <header class="cabecalho">
-      <!-- 
-        A classe "cabecalho" é o "gancho" que o CSS usa para estilizar esse bloco.
-        No style.css, procure por ".cabecalho" para ver as regras aplicadas aqui.
-      -->
-
       <div class="logo">
         <h2>ODONTO<span>VITA</span></h2>
-        <!-- 
-          O <span> separa a palavra "VITA" para poder pintar ela de outra cor no CSS
-          (veja ".logo span" no style.css)
-        -->
       </div>
-
       <nav class="menu">
-        <!-- <nav> é a tag correta para "menu de navegação", ajuda acessibilidade e Google -->
         <a href="#inicio">Início</a>
         <a href="#especialidades">Especialidades</a>
         <a href="#sobre">Sobre Nós</a>
         <a href="#localizacao">Localização</a>
-        <!-- 
-          Cada href="#algumaCoisa" aponta para um id="algumaCoisa" que existe mais abaixo na página.
-          Isso faz o clique "rolar" a tela até aquela seção (rolagem suave configurada no CSS: scroll-behavior)
-        -->
       </nav>
     </header>
 
     <!-- ==================== BANNER PRINCIPAL (HERO) ==================== -->
     <section id="inicio" class="hero">
-      <!-- id="inicio" é o alvo do link "Início" do menu -->
-
       <div class="hero-conteudo">
-        <span class="badge">Clínica Odontológica</span>
-        <!-- "badge" é aquela etiqueta pequena e colorida acima do título -->
-
-        <h1>Seu sorriso merece <br />o melhor <span>cuidado</span></h1>
         <!-- 
-          <br /> força uma quebra de linha manual.
-          O <span> em volta de "cuidado" deixa só essa palavra vermelha (ver CSS ".hero-conteudo h1 span")
+          NOVO: removi o "selo" em caixa alta que ficava acima do título
+          (ex: "CLÍNICA ODONTOLÓGICA"). Esse tipo de etiqueta some em quase
+          todo site feito rápido e não acrescenta nada — o título e o texto
+          já deixam claro do que se trata. Menos elementos, mais clareza.
         -->
+        <h1>Seu sorriso merece cuidado de verdade</h1>
 
         <p>
-          Na Odonto VITA, unimos tecnologia de ponta e profissionais
-          qualificados para transformar sorrisos com excelência e carinho.
-          Agende sua avaliação!
+          Unimos tecnologia atual e uma equipe atenciosa para cuidar da sua
+          saúde bucal em cada etapa — da prevenção aos tratamentos mais
+          completos. Agende sua avaliação e venha conhecer a clínica.
         </p>
 
         <div class="hero-botoes">
           <a
             href="https://api.whatsapp.com/send/?phone=5586981492207&text=Ol%C3%A1+%2C+gostaria+de+marcar+uma+avalia%C3%A7%C3%A3o"
-            class="btn btn-verde"
+            class="btn btn-primario"
             target="_blank"
             rel="noopener"
             >Agendar pelo WhatsApp</a
           >
-          <!-- 
-            Esse link abre o WhatsApp já com uma mensagem pronta digitada (o texto depois de "text=").
-            target="_blank" abre em nova aba.
-            MELHORIA: adicionei rel="noopener" — é uma boa prática de segurança sempre que
-            se usa target="_blank", evita que a nova aba tenha acesso à página original.
-          -->
-
-          <a href="#especialidades" class="btn btn-contorno"
-            >Conheça os Tratamentos</a
-          >
-          <!-- Botão "vazado" (contorno) que rola até a seção de especialidades -->
+          <a href="#especialidades" class="btn btn-secundario">Ver tratamentos</a>
         </div>
       </div>
 
-      <!-- Espaço para a imagem/logo grande do lado direito (como no vídeo) -->
-      <div class="hero-imagem">
-        <img src="logo.jpg" alt="Fachada e identidade visual da clínica Odonto VITA" />
-        <!-- 
-          MELHORIA: o texto do "alt" foi deixado mais descritivo.
-          O "alt" é lido por leitores de tela (acessibilidade) e aparece se a imagem não carregar.
-          Quanto mais descritivo, melhor para pessoas com deficiência visual e para o Google.
-        -->
+      <!-- 
+        NOVO: a foto agora tem uma "moldura" vermelha atrás dela, meio
+        deslocada — é só um retângulo (.hero-moldura) posicionado atrás da
+        imagem com position:absolute. Dá profundidade, como um quadro na
+        parede, sem precisar de nenhuma imagem extra.
+      -->
+      <div class="hero-visual">
+        <div class="hero-moldura" aria-hidden="true"></div>
+        <img
+          class="hero-foto"
+          src="logo.jpg"
+          alt="Fachada e identidade visual da clínica Odonto VITA"
+        />
       </div>
     </section>
 
-    <!-- ==================== BARRA VERMELHA DE INFORMAÇÕES ==================== -->
-    <div class="barra-infos">
+    <!-- 
+      ==================== CARTÃO DE INFORMAÇÕES ====================
+      NOVO: antes isso era uma barra vermelha sólida ocupando a largura toda.
+      Agora é um cartão branco que "flutua" por cima da borda entre o hero
+      e a próxima seção (usando margin-top negativo no CSS). Fica mais leve
+      e elegante do que um bloco de cor forte.
+    -->
+    <div class="cartao-infos">
       <div class="info-item">
         <span class="info-icone" aria-hidden="true">🕒</span>
-        <!-- 
-          MELHORIA: aria-hidden="true" nos emojis decorativos.
-          Isso diz para leitores de tela "ignore este emoji, ele é só decoração",
-          porque o texto ao lado já explica a mesma informação.
-        -->
         <div>
           <strong>Horário de Atendimento</strong>
           <p>Seg a Sex: 08h - 18h | Sáb: 08h - 12h</p>
@@ -146,12 +112,7 @@
         <span class="info-icone" aria-hidden="true">📞</span>
         <div>
           <strong>Ligue para nós</strong>
-          <p><a href="tel:+5586981492207" style="color: inherit; text-decoration: none;">(86) 98149-2207</a></p>
-          <!-- 
-            MELHORIA: transformei o número em link "tel:".
-            Em celulares, isso faz o número virar clicável e já abrir o discador de chamadas.
-            O style="color: inherit..." é só para o link não ficar azul/roxo, mantendo a cor original do texto.
-          -->
+          <p><a href="tel:+5586981492207" class="link-simples">(86) 98149-2207</a></p>
         </div>
       </div>
 
@@ -167,9 +128,7 @@
     <!-- ==================== SEÇÃO DE ESPECIALIDADES ==================== -->
     <section id="especialidades" class="secao-especialidades">
       <div class="cabecalho-secao">
-        <!-- Esse bloco "cabecalho-secao" é reutilizado em várias seções: badge + título + parágrafo, centralizados -->
-        <span class="badge">O que oferecemos</span>
-        <h2>Nossas Especialidades</h2>
+        <h2>Nossas especialidades</h2>
         <p>
           Tratamentos completos para toda a família, com tecnologia de última
           geração e profissionais especializados.
@@ -177,13 +136,6 @@
       </div>
 
       <div class="grid-especialidades">
-        <!-- 
-          "grid-especialidades" organiza os cards abaixo em colunas automáticas
-          (o CSS usa "grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))",
-          ou seja: cria quantas colunas de 320px couberem, e distribui o espaço sobrando)
-        -->
-
-        <!-- Card 1 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Clínica Geral</h3>
@@ -193,7 +145,6 @@
           </p>
         </div>
 
-        <!-- Card 2 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Ortodontia</h3>
@@ -203,7 +154,6 @@
           </p>
         </div>
 
-        <!-- Card 3 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Implantodontia</h3>
@@ -213,7 +163,6 @@
           </p>
         </div>
 
-        <!-- Card 4 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Odontopediatria</h3>
@@ -223,7 +172,6 @@
           </p>
         </div>
 
-        <!-- Card 5 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Clareamento Dental</h3>
@@ -232,7 +180,6 @@
           </p>
         </div>
 
-        <!-- Card 6 -->
         <div class="card-especialidade">
           <div class="icone-check" aria-hidden="true">✔️</div>
           <h3>Endodontia</h3>
@@ -247,7 +194,6 @@
     <!-- ==================== SEÇÃO SOBRE NÓS E ESTATÍSTICAS ==================== -->
     <section id="sobre" class="secao-sobre">
       <div class="cabecalho-secao">
-        <span class="badge">Quem somos</span>
         <h2>Sobre a Odonto VITA</h2>
         <p>
           Fundada com o propósito de transformar a relação das pessoas com o
@@ -258,8 +204,12 @@
         </p>
       </div>
 
+      <!-- 
+        NOVO: os números agora ficam lado a lado separados por uma linha fina
+        (border-left no CSS) em vez de três blocos soltos — parece mais uma
+        "faixa de credenciais" e menos três caixas repetidas.
+      -->
       <div class="estatisticas">
-        <!-- Os três números grandes (700+, 6+, 100%) -->
         <div class="dado">
           <h2>700+</h2>
           <p>Pacientes atendidos</p>
@@ -276,29 +226,43 @@
     </section>
 
     <!-- ==================== FAIXA VERMELHA DE CHAMADA (CTA) ==================== -->
-    <!-- "CTA" = Call To Action = "Chamada para Ação", o botão que convence o visitante a agir -->
     <section class="faixa-cta">
-      <h2>Pronto para transformar seu sorriso?</h2>
-      <p>
-        Fale com nossa equipe pelo WhatsApp e agende sua avaliação de forma
-        rápida e prática.
-      </p>
-      <a
-        href="https://api.whatsapp.com/send/?phone=5586981492207"
-        class="btn btn-verde-escuro"
-        target="_blank"
-        rel="noopener"
-        >Agendar pelo WhatsApp</a
+      <!-- 
+        NOVO: essa curva em SVG é o único "toque de ousadia" visual do site —
+        uma linha que lembra um sorriso, separando o fundo claro do vermelho
+        de forma mais suave que uma borda reta. É só um desenho, não precisa
+        entender cada número do "path", é o mesmo princípio de desenhar uma
+        curva à mão, só que em código.
+      -->
+      <svg
+        class="curva-sorriso"
+        viewBox="0 0 1200 80"
+        preserveAspectRatio="none"
+        aria-hidden="true"
       >
+        <path d="M0,0 C300,90 900,90 1200,0 L1200,80 L0,80 Z" fill="#FBF6F2"></path>
+      </svg>
+
+      <div class="faixa-cta-conteudo">
+        <h2>Pronto para transformar seu sorriso?</h2>
+        <p>
+          Fale com nossa equipe pelo WhatsApp e agende sua avaliação de forma
+          rápida e prática.
+        </p>
+        <a
+          href="https://api.whatsapp.com/send/?phone=5586981492207"
+          class="btn btn-verde"
+          target="_blank"
+          rel="noopener"
+          >Agendar pelo WhatsApp</a
+        >
+      </div>
     </section>
 
     <!-- ==================== RODAPÉ FINAL E MAPA ==================== -->
     <footer id="localizacao" class="rodape">
       <div class="rodape-container">
-        <!-- Divide o rodapé em duas colunas: infos de contato (esquerda) + mapa (direita) -->
-
         <div class="rodape-infos">
-          <span class="badge">Onde estamos</span>
           <h2>Localização e Contato</h2>
 
           <div class="lista-contato">
@@ -330,12 +294,6 @@
             </div>
           </div>
 
-          <!-- 
-            NOVO: bloco de redes sociais.
-            Cada link abre em nova aba (target="_blank") e usa um ícone SVG simples
-            (desenhado direto no código, sem precisar de imagem externa).
-            "aria-label" descreve o link para leitores de tela, já que o ícone sozinho não tem texto.
-          -->
           <div class="rodape-redes">
             <a
               href="https://www.instagram.com/odontovita.the/"
@@ -344,8 +302,7 @@
               class="rede-social"
               aria-label="Instagram da Odonto VITA"
             >
-              <!-- Ícone do Instagram em SVG -->
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
                 <path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5.01-4.73.07-.96.04-1.48.2-1.82.34-.46.18-.78.39-1.13.73-.34.34-.55.67-.73 1.13-.14.34-.3.86-.34 1.82C3.21 8.5 3.2 8.85 3.2 12s.01 3.5.07 4.73c.04.96.2 1.48.34 1.82.18.46.39.78.73 1.13.34.34.67.55 1.13.73.34.14.86.3 1.82.34 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c.96-.04 1.48-.2 1.82-.34.46-.18.78-.39 1.13-.73.34-.34.55-.67.73-1.13.14-.34.3-.86.34-1.82.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.04-.96-.2-1.48-.34-1.82-.18-.46-.39-.78-.73-1.13-.34-.34-.67-.55-1.13-.73-.34-.14-.86-.3-1.82-.34C15.5 4.01 15.15 4 12 4zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3zm5.15-1.98a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z"/>
               </svg>
               <span>@odontovita.the</span>
@@ -358,8 +315,7 @@
               class="rede-social"
               aria-label="Facebook da Odonto VITA"
             >
-              <!-- Ícone do Facebook em SVG -->
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
                 <path d="M13.5 22v-8.44h2.83l.42-3.28h-3.25V8.2c0-.95.26-1.6 1.63-1.6h1.74V3.67C16.53 3.6 15.53 3.5 14.37 3.5c-2.42 0-4.08 1.48-4.08 4.2v2.58H7.46v3.28h2.83V22h3.21z"/>
               </svg>
               <span>Facebook</span>
@@ -377,13 +333,6 @@
             allowfullscreen=""
             loading="lazy"
           ></iframe>
-          <!-- 
-            MELHORIA: adicionei title="..." no iframe.
-            Todo <iframe> deveria ter um "title" explicando o que ele mostra — isso é
-            exigido pelas regras de acessibilidade (leitores de tela avisam o usuário do que se trata).
-            loading="lazy" já estava certo: só carrega o mapa quando o usuário rola até perto dele,
-            deixando o site mais rápido.
-          -->
         </div>
       </div>
 
@@ -392,12 +341,7 @@
       </div>
     </footer>
 
-    <!-- 
-      NOVO: Botão flutuante do WhatsApp.
-      Ele fica FORA de qualquer <section>, direto no <body>, porque vai usar
-      "position: fixed" no CSS — isso faz ele "flutuar" na tela e aparecer em
-      cima de tudo, em qualquer parte da página, mesmo rolando para baixo.
-    -->
+    <!-- Botão flutuante de WhatsApp, fixo no canto da tela (ver .whatsapp-flutuante no CSS) -->
     <a
       href="https://api.whatsapp.com/send/?phone=5586981492207&text=Ol%C3%A1+%2C+gostaria+de+marcar+uma+avalia%C3%A7%C3%A3o"
       class="whatsapp-flutuante"
@@ -405,7 +349,6 @@
       rel="noopener"
       aria-label="Falar no WhatsApp"
     >
-      <!-- Ícone do WhatsApp em SVG -->
       <svg viewBox="0 0 32 32" width="30" height="30" fill="#ffffff" aria-hidden="true">
         <path d="M16.01 3C9.38 3 4 8.38 4 15.01c0 2.2.59 4.27 1.62 6.05L4 29l8.14-1.58a12.9 12.9 0 0 0 3.87.6h.01c6.63 0 12.01-5.38 12.01-12.01C28.02 8.38 22.64 3 16.01 3zm0 21.9h-.01a10.85 10.85 0 0 1-5.54-1.52l-.4-.24-4.83.94.94-4.71-.26-.42a10.86 10.86 0 0 1-1.66-5.84c0-6 4.88-10.88 10.88-10.88 5.99 0 10.87 4.88 10.87 10.88 0 6-4.88 10.79-10.99 10.79zm5.96-8.14c-.32-.16-1.9-.94-2.2-1.05-.29-.11-.51-.16-.72.16-.21.32-.83 1.05-1.02 1.26-.19.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.6-.95-.85-1.59-1.9-1.78-2.22-.19-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.75-.99-2.4-.26-.62-.53-.54-.72-.55l-.62-.01c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65 0 1.56 1.14 3.07 1.3 3.28.16.21 2.24 3.42 5.43 4.79.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.4.19-1.53-.08-.13-.29-.21-.61-.37z"/>
       </svg>
